@@ -1,0 +1,111 @@
+{
+    "name": "ValeAbilityInput",
+    "maps": [
+        {
+            "name": "Abilities",
+            "id": "b83309e5-8758-46a7-881c-00a2f2707f6a",
+            "actions": [
+                {
+                    "name": "QAbility",
+                    "type": "Button",
+                    "id": "6f78ae3c-ec3b-4e97-a7d6-35d310d74032",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "WAbility",
+                    "type": "Button",
+                    "id": "c4536f98-cd68-43d6-a57b-08f2d7a93736",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EAbility",
+                    "type": "Button",
+                    "id": "f91aae29-2760-4fbe-a10b-cd9a9f011679",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RAbility",
+                    "type": "Button",
+                    "id": "bb356bfb-3b8c-4307-8599-ba198561b1db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "22353333-e959-4229-a850-68f26139f5a8",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c991b913-11cb-4635-bdad-a070544600cc",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50adae25-234d-46e5-8cbf-1c46a0290f7a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91cf9d6b-d8aa-436c-b0e9-6bb24fd015d0",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Abilities",
+            "bindingGroup": "Abilities",
+            "devices": []
+        },
+        {
+            "name": "Standard",
+            "bindingGroup": "Standard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
