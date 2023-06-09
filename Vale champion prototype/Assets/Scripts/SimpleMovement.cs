@@ -8,6 +8,7 @@ public class SimpleMovement : MonoBehaviour
     public NavMeshAgent agent;
     public static bool stopMovement;
 
+    private NavMeshHit myNavHit;
     // Update is called once per frame
     void Update()
     {
@@ -17,12 +18,15 @@ public class SimpleMovement : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
 
-            NavMeshHit myNavHit;
             if (NavMesh.SamplePosition(hit.point, out myNavHit, 100, -1))
             {
-                StopCoroutine(StoreClick(myNavHit.position));
                 StartCoroutine(StoreClick(myNavHit.position));
             }
+        }
+
+        if(CalculateDistance(transform.position, myNavHit.position) >= 0.1f && !stopMovement)
+        {
+            agent.SetDestination(myNavHit.position);
         }
     }
 
@@ -34,5 +38,13 @@ public class SimpleMovement : MonoBehaviour
         }
         agent.SetDestination(targetPos);
         yield return null;
+    }
+
+    private float CalculateDistance(Vector3 destination, Vector3 source)
+    {
+        float xDiff = destination.x - source.x;
+        float zDiff = destination.z - source.z;
+
+        return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
     }
 }
