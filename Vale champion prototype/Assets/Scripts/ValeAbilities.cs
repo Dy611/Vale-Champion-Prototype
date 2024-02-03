@@ -52,16 +52,22 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnWAbility(InputValue input)
     {
-        Debug.Log("W");
-        StartCoroutine(WAbility());
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit);
+
+        if (hit.transform.gameObject.CompareTag("Ally"))
+        {
+            hit.transform.gameObject.AddComponent(typeof(Spellshield));
+        }
     }
     public void OnEAbility(InputValue input)
     {
-        Debug.Log("E");
+        Debug.Log("E Ability");
     }
     public void OnRAbility(InputValue input)
     {
-        Debug.Log("R");
+        Debug.Log("R Ability");
         StartCoroutine(RAbility());
     }
 
@@ -131,11 +137,6 @@ public class ValeAbilities : MonoBehaviour
 
         //ReEnable Player Movement
         SimpleMovement.stopMovement = false;
-        yield return null;
-    }
-
-    private IEnumerator WAbility()
-    {
         yield return null;
     }
 

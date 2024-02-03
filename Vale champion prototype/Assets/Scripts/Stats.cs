@@ -7,6 +7,7 @@ using TMPro;
 public class Stats : MonoBehaviour
 {
     public int vigilStrikes;
+    public float vigilStrikesDecayTime;
     public int maxHP;
     public int maxMana;
     public int currentHP;
@@ -19,6 +20,8 @@ public class Stats : MonoBehaviour
     public Image manaBar;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI manaText;
+
+    private float decayTimer;
 
     private void Start()
     {
@@ -49,6 +52,26 @@ public class Stats : MonoBehaviour
         {
             manaText.text = currentMana + " / " + maxMana;
         }
+
+        if(vigilStrikes > 0)
+        {
+            decayTimer += Time.deltaTime;
+            if(decayTimer >= vigilStrikesDecayTime)
+            {
+
+            }
+        }
+    }
+
+    public void ApplyDamage(bool applyStrikes, int damage)
+    {
+        if (applyStrikes)
+        {
+            vigilStrikes = Mathf.Clamp(vigilStrikes + 1, 0, 5);
+            decayTimer = 0;
+        }
+
+        currentHP -= damage;
     }
 
     private IEnumerator HealthRegen()

@@ -15,7 +15,11 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;
+        if(CalculateDistance(startPos, transform.position) <= 0.1f || CalculateDistance(endPos, transform.position) <= 0.1f)
+        {
+            timeElapsed += Time.deltaTime;
+        }
+
         if(CalculateDistance(startPos, transform.position) <= 0.1f)
         {
             if(timeElapsed >= delay)
