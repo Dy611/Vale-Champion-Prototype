@@ -8,6 +8,8 @@ public class ProjectileThrower : MonoBehaviour
     public Transform spawnPoint;
     public float speed;
     public float delay;
+    public float delayOffset;
+    public Animator anim;
 
     private GameObject spawnedObj;
     private float timeElapsed;
@@ -16,16 +18,21 @@ public class ProjectileThrower : MonoBehaviour
     {
         timeElapsed += Time.deltaTime;
 
-        if(timeElapsed >= delay)
+        if(timeElapsed >= delay + delayOffset)
         {
             Destroy(spawnedObj);
             timeElapsed = 0;
-            spawnedObj = Instantiate(projectile, spawnPoint);
+            anim.SetTrigger("Cast");
         }
 
         if(spawnedObj != null)
         {
             spawnedObj.transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
         }
+    }
+
+    public void SpawnObj()
+    {
+        spawnedObj = Instantiate(projectile, spawnPoint);
     }
 }

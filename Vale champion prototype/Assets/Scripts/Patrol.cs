@@ -9,12 +9,17 @@ public class Patrol : MonoBehaviour
     public Vector3 endPos;
     public float delay;
     public NavMeshAgent agent;
+    public Animator anim;
 
     public float timeElapsed;
 
     // Update is called once per frame
     void Update()
     {
+        if(timeElapsed > 0.2f)
+            anim.SetBool("Walking", false);
+
+
         if(CalculateDistance(startPos, transform.position) <= 0.1f || CalculateDistance(endPos, transform.position) <= 0.1f)
         {
             timeElapsed += Time.deltaTime;
@@ -44,6 +49,7 @@ public class Patrol : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(lookDir);
         timeElapsed = 0;
         agent.SetDestination(destination);
+        anim.SetBool("Walking", true);
     }
 
     private float CalculateDistance(Vector3 destination, Vector3 source)
