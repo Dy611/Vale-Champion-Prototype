@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using TMPro;
 
 public class ValeAbilities : MonoBehaviour
 {
     [Header("Requirements")]
     public NavMeshAgent agent;
+    public Stats valeStats;
     public Camera cam;
+    public Animator valeAnim;
     public CollisionSensor colSensor;
     public GameObject navMeshWithCollision;
     public GameObject navMeshWithoutCollision;
+    public Image qFill;
+    public Image wFill;
+    public Image eFill;
+    public Image rFill;
+    public TMP_Text qCDText;
+    public TMP_Text wCDText;
+    public TMP_Text eCDText;
+    public TMP_Text rCDText;
 
     [Header("Q Ability")]
     public float qCooldown;
+    public int qManaCost;
     public float qCurrentCharges;
     public float qMaxCharges;
     public float qNormalDistance;
@@ -27,12 +40,14 @@ public class ValeAbilities : MonoBehaviour
 
     [Header("W Ability")]
     public float wCooldown;
+    public int wManaCost;
     public float wShieldDuration;
     public float wInvisDuration;
     public float wRefundPercent;
 
     [Header("E Ability")]
     public float eCooldown;
+    public int eManaCost;
     public float eSlowPercent;
     public float eSlowDuration;
     public float eRefundPercent;
@@ -40,6 +55,7 @@ public class ValeAbilities : MonoBehaviour
 
     [Header("R Ability")]
     public float rCooldown;
+    public int rManaCost;
     public float rDuration;
     public float rHealPercent;
 
@@ -47,8 +63,12 @@ public class ValeAbilities : MonoBehaviour
     private NavMeshHit navHit;
     public void OnQAbility(InputValue input)
     {
-        Debug.Log("Q Ability");
-        StartCoroutine(QAbility());
+        if (qFill.fillAmount == 0 && valeStats.currentMana >= qManaCost)
+        {
+            valeStats.currentMana -= qManaCost;
+            StartCoroutine(AbilityCooldown(qCooldown, qFill, qCDText));
+            StartCoroutine(QAbility());
+        }
     }
     public void OnWAbility(InputValue input)
     {
@@ -56,9 +76,11 @@ public class ValeAbilities : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
 
-        if (hit.transform.gameObject.CompareTag("Ally"))
+        if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost)
         {
+            valeStats.currentMana -= wManaCost;
             hit.transform.gameObject.AddComponent(typeof(Spellshield));
+            StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText));
         }
     }
     public void OnEAbility(InputValue input)
@@ -73,6 +95,7 @@ public class ValeAbilities : MonoBehaviour
 
     private IEnumerator QAbility()
     {
+        valeAnim.SetBool("Running", true);
         //Prevent Player From "Breaking" Out Of Ability
         SimpleMovement.stopMovement = true;
         //Determine Direction By Getting Mouse Position
@@ -137,11 +160,30 @@ public class ValeAbilities : MonoBehaviour
 
         //ReEnable Player Movement
         SimpleMovement.stopMovement = false;
+
+        valeAnim.SetBool("Running", false);
         yield return null;
     }
 
     private IEnumerator RAbility()
     {
+        yield return null;
+    }
+
+    private IEnumerator AbilityCooldown(float cooldown, Image fillImage, TMP_Text cooldownText)
+    {
+        float countDown = cooldown;
+        fillImage.fillAmount = 1;
+        cooldownText.text = countDown.ToString();
+        while (countDown > 0)
+        {
+            countDown -= Time.deltaTime;
+            cooldownText.text = Mathf.CeilToInt(countDown).ToString();
+            fillImage.fillAmount = countDown / cooldown;
+            yield return null;
+        }
+        fillImage.fillAmount = 0;
+        cooldownText.text = "";
         yield return null;
     }
 
