@@ -17867,8 +17867,10 @@ MonoBehaviour:
   cam: {fileID: 1332748994}
   agent: {fileID: 1958931326}
   valeAnim: {fileID: 1352024157}
-  rotSpeed: 1000
-  agentAvoidanceRange: 2
+  agentProximityRange: 2
+  movementLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!136 &1958931328
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18040,7 +18042,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.1
+  m_Radius: 0.75
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

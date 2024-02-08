@@ -8,17 +8,16 @@ public class SimpleMovement : MonoBehaviour
     public NavMeshAgent agent;
     public static bool stopMovement;
     public Animator valeAnim;
-    public float rotSpeed;
-    public float agentAvoidanceRange;
+    public float agentProximityRange;
 
-    public LayerMask ignoreLayers;
+    public LayerMask movementLayers;
     private NavMeshHit myNavHit;
 
     // Update is called once per frame
     void Update()
     {
         //Update Animation When Walking
-        if(agent.velocity.x != 0 || agent.velocity.z != 0)
+        if (agent.velocity.x != 0 || agent.velocity.z != 0)
             valeAnim.SetBool("Walking", true);
         else
             valeAnim.SetBool("Walking", false);
@@ -27,41 +26,26 @@ public class SimpleMovement : MonoBehaviour
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, ~ignoreLayers);
-
-            //if (Physics.Raycast(ray, out hit, 1000f, ~ignoreLayers))
-            //{
-            //    Debug.Log("OBJ: " + hit.transform.gameObject.name);
-            //}
+            Physics.Raycast(ray, out hit, 1000f, movementLayers);
 
             if (NavMesh.SamplePosition(hit.point, out myNavHit, 100, -1))
-            {
-                Vector3 lookDir = myNavHit.position - transform.position;
-                float RotateSpeed = Time.deltaTime * rotSpeed;
-                lookDir.y = 0;
-
-                Vector3 NewDirectionToLook = Vector3.RotateTowards(transform.forward, lookDir, RotateSpeed, 0.0f);
-                
-
-                StartCoroutine(StoreClick(myNavHit.position, NewDirectionToLook));
-            }
+                StartCoroutine(StoreClick(myNavHit.position));
         }
     }
 
-    private IEnumerator StoreClick(Vector3 targetPos, Vector3 rot)
+    private IEnumerator StoreClick(Vector3 targetPos)
     {
         while (stopMovement)
         {
             yield return null;
         }
-        transform.rotation = Quaternion.LookRotation(rot);
         agent.SetDestination(targetPos);
         yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 6 && !stopMovement)
+        if (other.gameObject.layer == 6 && !stopMovement)
         {
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         }
@@ -80,18 +64,13 @@ public class SimpleMovement : MonoBehaviour
         if (other.gameObject.layer == 6 && !stopMovement)
         {
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 direction = myNavHit.position - transform.position;
 
-            Vector3 forward = other.gameObject.transform.position.normalized;
-            Vector3 toOther = myNavHit.position - transform.position;
-
-            if (Vector3.Dot(forward, toOther) > 0 && CalculateDistance(myNavHit.position, transform.position) < agentAvoidanceRange)
+            if (Vector3.Dot(forward, direction) > 0 && CalculateDistance(myNavHit.position, transform.position) < agentProximityRange)
             {
                 agent.SetDestination(transform.position);
                 valeAnim.SetBool("Walking", false);
-            }
-            else
-            {
-                Debug.Log("CLICKED AWAY");
             }
         }
     }
@@ -103,7 +82,6 @@ public class SimpleMovement : MonoBehaviour
 
         return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
     }
-
 
     private void OnDrawGizmos()
     {
