@@ -12,6 +12,11 @@ public class CollisionSensor : MonoBehaviour
     /// </summary>
     [SerializeField] LayerMask layers;
 
+    /// <summary>
+    /// The Tags This Sensor Uses
+    /// </summary>
+    [SerializeField] string[] tags;
+
     [SerializeField] Color standardColor;
     [SerializeField] Color detectionColor;
 
@@ -40,22 +45,32 @@ public class CollisionSensor : MonoBehaviour
     void Update()
     {
         disableTimer -= Time.deltaTime;
-        if(colCount > 0)
-        {
+        if (colCount > 0)
             GetComponent<Renderer>().material.color = detectionColor;
-        }
         else
-        {
             GetComponent<Renderer>().material.color = standardColor;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (((1 << other.gameObject.layer) & layers) != 0)
         {
-            colCount++;
-            cols.Add(other);
+            if (tags.Length > 0)
+            {
+                foreach (string tag in tags)
+                {
+                    if (!other.CompareTag(tag))
+                    {
+                        colCount++;
+                        cols.Add(other);
+                    }
+                }
+            }
+            else
+            {
+                colCount++;
+                cols.Add(other);
+            }
         }
     }
 
@@ -63,8 +78,22 @@ public class CollisionSensor : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & layers) != 0)
         {
-            colCount--;
-            cols.Remove(other);
+            if (tags.Length > 0)
+            {
+                foreach (string tag in tags)
+                {
+                    if (!other.CompareTag(tag))
+                    {
+                        colCount--;
+                        cols.Remove(other);
+                    }
+                }
+            }
+            else
+            {
+                colCount--;
+                cols.Remove(other);
+            }
         }
     }
     #endregion Unity Methods

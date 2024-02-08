@@ -39,6 +39,7 @@ public class ValeAbilities : MonoBehaviour
     public float qRefundPercent;
 
     [Header("W Ability")]
+    public Material invisMat;
     public float wCooldown;
     public int wManaCost;
     public float wShieldDuration;
@@ -79,7 +80,10 @@ public class ValeAbilities : MonoBehaviour
         if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost)
         {
             valeStats.currentMana -= wManaCost;
-            hit.transform.gameObject.AddComponent(typeof(Spellshield));
+            Spellshield currShield = (Spellshield)hit.transform.gameObject.AddComponent(typeof(Spellshield));
+            currShield.invisMat = invisMat;
+            currShield.duration = wShieldDuration;
+            currShield.invisDuration = wInvisDuration;
             StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText));
         }
     }
@@ -111,11 +115,14 @@ public class ValeAbilities : MonoBehaviour
         bool towardsEnemy = false;
         foreach(Collider obj in colSensor.cols)
         {
-            Vector3 forward = transform.TransformDirection(Vector3.forward);
-            Vector3 toOther = obj.transform.position - transform.position;
-            if(Vector3.Dot(forward, toOther.normalized) >= 0.8f)
+            if (obj.transform.CompareTag("Enemy"))
             {
-                towardsEnemy = true;
+                Vector3 forward = transform.TransformDirection(Vector3.forward);
+                Vector3 toOther = obj.transform.position - transform.position;
+                if (Vector3.Dot(forward, toOther.normalized) >= 0.8f)
+                {
+                    towardsEnemy = true;
+                }
             }
         }
 

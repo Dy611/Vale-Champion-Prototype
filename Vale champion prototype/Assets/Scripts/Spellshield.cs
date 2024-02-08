@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Spellshield : MonoBehaviour
 {
-    public float duration = 1.5f;
-    public float invisDuration = 0.75f;
+    public Material invisMat;
+
+    public float duration;
+    public float invisDuration;
 
     private float timeElapsed;
     private Renderer[] rends;
+    private List<Material> originalMats;
+    private TMP_Text nameText;
     private bool invis;
+    private string originalName;
 
     void Update()
     {
         timeElapsed += Time.deltaTime;
-        if(timeElapsed >= duration && !invis)
+        if (timeElapsed >= duration && !invis)
         {
             Destroy(this);
-            Debug.LogWarning("Blocked Nothing");
         }
     }
 
@@ -27,29 +32,31 @@ public class Spellshield : MonoBehaviour
         {
             invis = true;
             rends = transform.GetComponentsInChildren<Renderer>();
-            foreach(Renderer rend in rends)
+            originalMats = new List<Material>();
+
+            for (int i = 0; i < rends.Length; i++)
             {
-                Color col = rend.material.color;
-                col.a = 0.25f;
-                rend.material.color = col;
+                originalMats.Add(rends[i].material);
+                rends[i].material = invisMat;
             }
 
+            nameText = GetComponentInChildren<TMP_Text>();
+            originalName = nameText.text;
+            nameText.text = "Invisible!";
             StartCoroutine(InvisTime(invisDuration));
-
         }
     }
 
     private IEnumerator InvisTime(float length)
     {
-        Debug.LogWarning("INVIS");
         yield return new WaitForSeconds(length);
-        Debug.LogWarning("VIS");
-        foreach (Renderer rend in rends)
+
+        for (int i = 0; i < rends.Length; i++)
         {
-            Color col = rend.material.color;
-            col.a = 1;
-            rend.material.color = col;
+            rends[i].material = originalMats[i];
         }
+
+        nameText.text = originalName;
         Destroy(GetComponent<Spellshield>());
         yield return null;
     }

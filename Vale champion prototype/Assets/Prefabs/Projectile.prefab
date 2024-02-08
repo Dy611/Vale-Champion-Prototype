@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applyVigilStrikes: 0
   lifeDuration: 3
-  damage: 5
+  damage: 25
 --- !u!54 &1301488344719336858
 Rigidbody:
   m_ObjectHideFlags: 0
