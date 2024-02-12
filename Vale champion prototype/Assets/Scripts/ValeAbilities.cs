@@ -45,6 +45,7 @@ public class ValeAbilities : MonoBehaviour
     public float wShieldDuration;
     public float wInvisDuration;
     public float wRefundPercent;
+    public float wTargetRange;
 
     [Header("E Ability")]
     public float eCooldown;
@@ -77,13 +78,20 @@ public class ValeAbilities : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
 
-        if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost)
+        if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost && CalculateDistance(hit.transform.position, transform.position) < wTargetRange)
         {
+            valeAnim.SetTrigger("WAbility");
             valeStats.currentMana -= wManaCost;
             Spellshield currShield = (Spellshield)hit.transform.gameObject.AddComponent(typeof(Spellshield));
             currShield.invisMat = invisMat;
             currShield.duration = wShieldDuration;
             currShield.invisDuration = wInvisDuration;
+
+            Vector3 lookDir = hit.point - transform.position;
+            lookDir.y = 0;
+            transform.rotation = Quaternion.LookRotation(lookDir);
+            agent.SetDestination(transform.position);
+
             StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText));
         }
     }

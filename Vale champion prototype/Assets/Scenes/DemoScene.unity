@@ -17951,11 +17951,13 @@ MonoBehaviour:
   qAllyMSIncreasePercent: 0.1
   qRefundPercent: 0.5
   invisMat: {fileID: 2100000, guid: a0b5bf2d0a906f2488cd6837cc952be0, type: 2}
+  spellshieldMat: {fileID: 2100000, guid: 7ddba3e4ffc9b2e47803ba97dd6afd92, type: 2}
   wCooldown: 12
   wManaCost: 30
   wShieldDuration: 1.5
   wInvisDuration: 0.75
   wRefundPercent: 0.25
+  wTargetRange: 6
   eCooldown: 15
   eManaCost: 74
   eSlowPercent: 20
