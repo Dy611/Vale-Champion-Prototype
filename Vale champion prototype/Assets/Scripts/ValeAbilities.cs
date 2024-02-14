@@ -101,6 +101,7 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnEAbility(InputValue input)
     {
+        StartCoroutine(EAbility());
         valeAnim.SetTrigger("EAbility");
     }
     public void OnRAbility(InputValue input)
