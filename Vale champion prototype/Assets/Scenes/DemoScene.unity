@@ -199,6 +199,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24571840}
   m_CullTransparentMesh: 1
+--- !u!114 &66960614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 391148961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &89024173
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,8 +881,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  hpBar: {fileID: 1859630184}
+  manaBar: {fileID: 1357184141}
+  hpBarHUD: {fileID: 0}
+  manaBarHUD: {fileID: 0}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
 --- !u!1 &245557874
@@ -1025,6 +1039,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249440059}
   m_CullTransparentMesh: 1
+--- !u!114 &268537285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1269209882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272997174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5236,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407850551}
   m_CullTransparentMesh: 1
+--- !u!1 &414387106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414387107}
+  m_Layer: 0
+  m_Name: ESpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414387107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414387106}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.19, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1958931331}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437138203
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,6 +8385,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729524284}
   m_CullTransparentMesh: 1
+--- !u!114 &737826522 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 6890645690720947268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &738178293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 391148961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &741436399
 GameObject:
   m_ObjectHideFlags: 0
@@ -8410,6 +8491,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1721796360}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &750510009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1917393664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &759696904
 GameObject:
   m_ObjectHideFlags: 0
@@ -9845,6 +9938,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071538654}
   m_CullTransparentMesh: 1
+--- !u!114 &1082025933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 6890645690720947268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1133929912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14632,6 +14737,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd99ad0d5e351d641a15dab5e32f47f0, type: 3}
+--- !u!114 &1357184141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1721796360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1401930913
 GameObject:
   m_ObjectHideFlags: 0
@@ -14839,8 +14956,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  hpBar: {fileID: 268537285}
+  manaBar: {fileID: 1542587717}
+  hpBarHUD: {fileID: 0}
+  manaBarHUD: {fileID: 0}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
 --- !u!1 &1469505348
@@ -15341,6 +15460,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512382683}
   m_CullTransparentMesh: 1
+--- !u!114 &1542587717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1269209882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1558468148
 GameObject:
   m_ObjectHideFlags: 0
@@ -15476,6 +15607,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558468148}
   m_CullTransparentMesh: 1
+--- !u!114 &1570385142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 885473045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1587282872 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9114698463049415331, guid: 6aae4496e3275e540a2f8635e87ad437,
@@ -16389,8 +16532,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  hpBar: {fileID: 1570385142}
+  manaBar: {fileID: 1945177539}
+  hpBarHUD: {fileID: 0}
+  manaBarHUD: {fileID: 0}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
 --- !u!54 &1720934018
@@ -16819,8 +16964,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  hpBar: {fileID: 1924860677}
+  manaBar: {fileID: 750510009}
+  hpBarHUD: {fileID: 0}
+  manaBarHUD: {fileID: 0}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
 --- !u!1 &1802027940
@@ -17171,6 +17318,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816963276}
   m_CullTransparentMesh: 1
+--- !u!114 &1859630184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1721796360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889078783
 GameObject:
   m_ObjectHideFlags: 0
@@ -17622,6 +17781,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921480410}
   m_CullTransparentMesh: 1
+--- !u!114 &1924860677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852654004949597884, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1917393664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925325501
 GameObject:
   m_ObjectHideFlags: 0
@@ -17745,8 +17916,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  hpBar: {fileID: 738178293}
+  manaBar: {fileID: 66960614}
+  hpBarHUD: {fileID: 0}
+  manaBarHUD: {fileID: 0}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
 --- !u!54 &1925325510
@@ -17776,6 +17949,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1945177539 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 885473045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950063050
 GameObject:
   m_ObjectHideFlags: 0
@@ -17868,6 +18053,7 @@ MonoBehaviour:
   agent: {fileID: 1958931326}
   valeAnim: {fileID: 1352024157}
   agentProximityRange: 2
+  fixDestinationDelay: 0.25
   movementLayers:
     serializedVersion: 2
     m_Bits: 1
@@ -17909,6 +18095,7 @@ Transform:
   - {fileID: 759696908}
   - {fileID: 1352024156}
   - {fileID: 1173589368}
+  - {fileID: 414387107}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17951,7 +18138,6 @@ MonoBehaviour:
   qAllyMSIncreasePercent: 0.1
   qRefundPercent: 0.5
   invisMat: {fileID: 2100000, guid: a0b5bf2d0a906f2488cd6837cc952be0, type: 2}
-  spellshieldMat: {fileID: 2100000, guid: 7ddba3e4ffc9b2e47803ba97dd6afd92, type: 2}
   wCooldown: 12
   wManaCost: 30
   wShieldDuration: 1.5
@@ -17964,6 +18150,11 @@ MonoBehaviour:
   eSlowDuration: 1.5
   eRefundPercent: 0.2
   eQRefundPercent: 0.5
+  eProjectile: {fileID: 7239551046416767604, guid: 7a68a19e5c880a049b9d4f095d679dff,
+    type: 3}
+  eSpawnPoint: {fileID: 414387107}
+  eSpeed: 10
+  eLife: 1
   rCooldown: 90
   rManaCost: 60
   rDuration: 5
@@ -18021,8 +18212,10 @@ MonoBehaviour:
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
-  hpBar: {fileID: 809441569}
-  manaBar: {fileID: 896118663}
+  hpBar: {fileID: 737826522}
+  manaBar: {fileID: 1082025933}
+  hpBarHUD: {fileID: 809441569}
+  manaBarHUD: {fileID: 896118663}
   hpText: {fileID: 992356903}
   manaText: {fileID: 830635714}
 --- !u!136 &1958931335

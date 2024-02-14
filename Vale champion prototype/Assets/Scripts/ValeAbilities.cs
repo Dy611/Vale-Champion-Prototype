@@ -55,6 +55,12 @@ public class ValeAbilities : MonoBehaviour
     public float eRefundPercent;
     public float eQRefundPercent;
 
+
+    public GameObject eProjectile;
+    public Transform eSpawnPoint;
+    public float eSpeed;
+    public float eLife;
+
     [Header("R Ability")]
     public float rCooldown;
     public int rManaCost;
@@ -87,9 +93,7 @@ public class ValeAbilities : MonoBehaviour
             currShield.duration = wShieldDuration;
             currShield.invisDuration = wInvisDuration;
 
-            Vector3 lookDir = hit.point - transform.position;
-            lookDir.y = 0;
-            transform.rotation = Quaternion.LookRotation(lookDir);
+            RotateVale(hit.point);
             agent.SetDestination(transform.position);
 
             StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText));
@@ -97,7 +101,7 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnEAbility(InputValue input)
     {
-        Debug.Log("E Ability");
+        valeAnim.SetTrigger("EAbility");
     }
     public void OnRAbility(InputValue input)
     {
@@ -115,9 +119,7 @@ public class ValeAbilities : MonoBehaviour
         Physics.Raycast(ray, out hit);
 
         //Rotate Character
-        Vector3 lookDir = hit.point - transform.position;
-        lookDir.y = 0;
-        transform.rotation = Quaternion.LookRotation(lookDir);
+        RotateVale(hit.point);
 
         //Determine If Ability Is Towards Enemy
         bool towardsEnemy = false;
@@ -166,9 +168,6 @@ public class ValeAbilities : MonoBehaviour
         //Reset Agent Speed
         agent.speed = 5;
 
-        //Enable "Champion" Collision
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-
         //Reset NavMeshes
         navMeshWithCollision.SetActive(true);
         navMeshWithoutCollision.SetActive(false);
@@ -178,6 +177,31 @@ public class ValeAbilities : MonoBehaviour
 
         valeAnim.SetBool("Running", false);
         yield return null;
+    }
+
+    private IEnumerator EAbility()
+    {
+        //Determine Direction By Getting Mouse Position
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit);
+
+        RotateVale(hit.point);
+
+        GameObject spawnedObj = Instantiate(eProjectile, eSpawnPoint);
+        spawnedObj.transform.SetParent(null);
+        spawnedObj.GetComponent<Ability>().lifeDuration = eLife;
+
+        while (spawnedObj != null)
+        {
+            spawnedObj.transform.Translate(spawnedObj.transform.forward * eSpeed * Time.deltaTime, Space.World);
+            yield return null;
+        }
+    }
+
+    public void ESpawnObj()
+    {
+        StartCoroutine(EAbility());
     }
 
     private IEnumerator RAbility()
@@ -208,5 +232,12 @@ public class ValeAbilities : MonoBehaviour
         float zDiff = destination.z - source.z;
 
         return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
+    }
+
+    private void RotateVale(Vector3 destination)
+    {
+        Vector3 lookDir = destination - transform.position;
+        lookDir.y = 0;
+        transform.rotation = Quaternion.LookRotation(lookDir);
     }
 }

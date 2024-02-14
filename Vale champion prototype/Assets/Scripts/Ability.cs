@@ -13,11 +13,11 @@ public class Ability : MonoBehaviour
         StartCoroutine(SetLifeDuration());
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.layer == 6)
+        if (other.gameObject.layer == 6)
         {
-            collision.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
+            other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
             Destroy(gameObject);
         }
     }

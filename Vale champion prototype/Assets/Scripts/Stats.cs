@@ -18,6 +18,8 @@ public class Stats : MonoBehaviour
     public float manaTickRate;
     public Image hpBar;
     public Image manaBar;
+    public Image hpBarHUD;
+    public Image manaBarHUD;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI manaText;
 
@@ -33,17 +35,27 @@ public class Stats : MonoBehaviour
 
     private void Update()
     {
-        if(hpBar != null)
+        if(hpBarHUD != null)
         {
             hpBar.fillAmount = (float)currentHP / maxHP;
         }
 
-        if(manaBar != null)
+        if(manaBarHUD != null)
         {
             manaBar.fillAmount = (float)currentMana / maxMana;
         }
 
-        if(hpText != null)
+        if (hpBar != null)
+        {
+            hpBar.fillAmount = (float)currentHP / maxHP;
+        }
+
+        if (manaBar != null)
+        {
+            manaBar.fillAmount = (float)currentMana / maxMana;
+        }
+
+        if (hpText != null)
         {
             hpText.text = currentHP + " / " + maxHP;
         }
@@ -60,6 +72,11 @@ public class Stats : MonoBehaviour
             {
 
             }
+        }
+
+        if(currentHP <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

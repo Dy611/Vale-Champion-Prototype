@@ -9,9 +9,11 @@ public class SimpleMovement : MonoBehaviour
     public static bool stopMovement;
     public Animator valeAnim;
     public float agentProximityRange;
+    public float fixDestinationDelay;
 
     public LayerMask movementLayers;
     private NavMeshHit myNavHit;
+    private float currTimer;
 
     // Update is called once per frame
     void Update()
@@ -31,6 +33,15 @@ public class SimpleMovement : MonoBehaviour
             if (NavMesh.SamplePosition(hit.point, out myNavHit, 100, -1))
                 StartCoroutine(StoreClick(myNavHit.position));
         }
+
+        if (CalculateDistance(agent.destination, transform.position) < 1)
+        {
+            currTimer += Time.deltaTime;
+            if (currTimer >= fixDestinationDelay)
+                agent.SetDestination(transform.position);
+        }
+        else
+            currTimer = 0;
     }
 
     private IEnumerator StoreClick(Vector3 targetPos)
