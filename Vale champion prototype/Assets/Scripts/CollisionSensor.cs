@@ -110,5 +110,17 @@ public class CollisionSensor : MonoBehaviour
     {
         disableTimer = duration;
     }
+
+    public void CleanDeletedReferences()
+    {
+        for(int i = 0; i < cols.Count; i++)
+        {
+            if(cols[i] == null)
+            {
+                cols.Remove(cols[i]);
+                colCount--;
+            }
+        }
+    }
     #endregion Public Methods
 }

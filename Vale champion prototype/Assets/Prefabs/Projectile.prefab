@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyVigilStrikes: 0
+  destroyOnHit: 1
   lifeDuration: 3
   damage: 25
 --- !u!54 &1301488344719336858

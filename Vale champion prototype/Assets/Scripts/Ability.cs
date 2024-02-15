@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ability : MonoBehaviour
 {
     public bool applyVigilStrikes;
+    public bool destroyOnHit;
     public float lifeDuration;
     public int damage;
 
@@ -18,7 +19,8 @@ public class Ability : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
-            Destroy(gameObject);
+            if(destroyOnHit)
+                Destroy(gameObject);
         }
     }
 

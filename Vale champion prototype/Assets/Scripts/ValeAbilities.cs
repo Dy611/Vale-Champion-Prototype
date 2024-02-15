@@ -24,12 +24,16 @@ public class ValeAbilities : MonoBehaviour
     public TMP_Text wCDText;
     public TMP_Text eCDText;
     public TMP_Text rCDText;
+    public TMP_Text qChargeText;
+    public Color abilityCDFillColorDefault;
+    public Color abilityCDFillColorCharges;
 
     [Header("Q Ability")]
+    public Material dashMat;
     public float qCooldown;
     public int qManaCost;
-    public float qCurrentCharges;
-    public float qMaxCharges;
+    public int qCurrentCharges;
+    public int qMaxCharges;
     public float qNormalDistance;
     public float qDistanceTowardsEnemies;
     public float qSpeed;
@@ -57,7 +61,6 @@ public class ValeAbilities : MonoBehaviour
     public float eRefundPercent;
     public float eQRefundPercent;
 
-
     public GameObject eProjectile;
     public Transform eSpawnPoint;
     public float eSpeed;
@@ -71,13 +74,38 @@ public class ValeAbilities : MonoBehaviour
 
     private RaycastHit hit;
     private NavMeshHit navHit;
+
+
+    private Renderer[] rends;
+    private List<Material> originalMats;
+
+    private void Start()
+    {
+        qCurrentCharges = qMaxCharges;
+
+        rends = transform.GetComponentsInChildren<Renderer>();
+        originalMats = new List<Material>();
+
+        for (int i = 0; i < rends.Length; i++)
+        {
+            originalMats.Add(rends[i].material);
+        }
+    }
+
     public void OnQAbility(InputValue input)
     {
-        if (qFill.fillAmount == 0 && valeStats.currentMana >= qManaCost)
+        if ((qFill.fillAmount == 0 || qCurrentCharges > 0) && valeStats.currentMana >= qManaCost)
         {
+            qCurrentCharges--;
+
+            if (qCurrentCharges > 0)
+                qChargeText.text = qCurrentCharges.ToString();
+            else
+                qChargeText.text = "";
+
             valeStats.currentMana -= qManaCost;
-            StartCoroutine(AbilityCooldown(qCooldown, qFill, qCDText));
             StartCoroutine(QAbility());
+            StartCoroutine(AbilityCooldown(qCooldown, qFill, qCDText, true, qCurrentCharges, qChargeText));
         }
     }
     public void OnWAbility(InputValue input)
@@ -90,7 +118,7 @@ public class ValeAbilities : MonoBehaviour
             agent.SetDestination(transform.position);
             RotateVale(hit.point);
             valeAnim.SetTrigger("WAbility");
-            StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText));
+            StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText, false, 0, null));
         }
     }
     public void OnEAbility(InputValue input)
@@ -102,7 +130,7 @@ public class ValeAbilities : MonoBehaviour
             GetMousePosition();
             RotateVale(hit.point);
             valeAnim.SetTrigger("EAbility");
-            StartCoroutine(AbilityCooldown(eCooldown, eFill, eCDText));
+            StartCoroutine(AbilityCooldown(eCooldown, eFill, eCDText, false, 0, null));
         }
     }
     public void OnRAbility(InputValue input)
@@ -113,6 +141,16 @@ public class ValeAbilities : MonoBehaviour
 
     private IEnumerator QAbility()
     {
+        for (int i = 0; i < rends.Length; i++)
+        {
+            rends[i].material = dashMat;
+        }
+
+        Ability damageVolume = gameObject.AddComponent<Ability>();
+        damageVolume.lifeDuration = 100;
+        damageVolume.applyVigilStrikes = true;
+        damageVolume.damage = qDamage;
+
         valeAnim.SetBool("Running", true);
         //Prevent Player From "Breaking" Out Of Ability
         SimpleMovement.stopMovement = true;
@@ -124,9 +162,11 @@ public class ValeAbilities : MonoBehaviour
 
         //Determine If Ability Is Towards Enemy
         bool towardsEnemy = false;
-        foreach(Collider obj in colSensor.cols)
+
+        colSensor.CleanDeletedReferences();
+        foreach (Collider obj in colSensor.cols)
         {
-            if (obj.transform.CompareTag("Enemy"))
+            if (obj != null && obj.transform.CompareTag("Enemy"))
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 Vector3 toOther = obj.transform.position - transform.position;
@@ -176,7 +216,12 @@ public class ValeAbilities : MonoBehaviour
         //ReEnable Player Movement
         SimpleMovement.stopMovement = false;
 
+        Destroy(damageVolume);
         valeAnim.SetBool("Running", false);
+        for (int i = 0; i < rends.Length; i++)
+        {
+            rends[i].material = originalMats[i];
+        }
         yield return null;
     }
 
@@ -218,21 +263,73 @@ public class ValeAbilities : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator AbilityCooldown(float cooldown, Image fillImage, TMP_Text cooldownText)
+    private IEnumerator AbilityCooldown(float cooldown, Image fillImage, TMP_Text cooldownText, bool hasCharges, int currentCharges, TMP_Text chargeText)
     {
-        float countDown = cooldown;
-        fillImage.fillAmount = 1;
-        cooldownText.text = countDown.ToString();
-        while (countDown > 0)
+        if (hasCharges)
         {
-            countDown -= Time.deltaTime;
-            cooldownText.text = Mathf.CeilToInt(countDown).ToString();
-            fillImage.fillAmount = countDown / cooldown;
-            yield return null;
+            //Set the fill color
+            if(currentCharges > 0)
+            {
+                fillImage.color = abilityCDFillColorCharges;
+                chargeText.text = currentCharges.ToString();
+                cooldownText.enabled = false;
+            }
+            else
+            {
+                fillImage.color = abilityCDFillColorDefault;
+                chargeText.text = "";
+                cooldownText.enabled = true;
+            }
+
+            if (fillImage.fillAmount == 0)
+            {
+                float countDown = cooldown;
+                fillImage.fillAmount = 1;
+                cooldownText.text = countDown.ToString();
+                while (countDown > 0)
+                {
+                    countDown -= Time.deltaTime;
+                    cooldownText.text = Mathf.CeilToInt(countDown).ToString();
+                    fillImage.fillAmount = countDown / cooldown;
+                    yield return null;
+                }
+                fillImage.fillAmount = 0;
+
+                //I must figure out how to decouple you!
+                qCurrentCharges++;
+                if(qCurrentCharges == qMaxCharges)
+                {
+                    chargeText.text = (currentCharges + 1).ToString();
+                    yield return null;
+                }
+                else
+                {
+                    StartCoroutine(AbilityCooldown(cooldown, fillImage, cooldownText, true, currentCharges, chargeText));
+                }
+
+                yield return null;
+            }
         }
-        fillImage.fillAmount = 0;
-        cooldownText.text = "";
-        yield return null;
+        else
+        {
+            fillImage.color = abilityCDFillColorDefault;
+            if (fillImage.fillAmount == 0)
+            {
+                float countDown = cooldown;
+                fillImage.fillAmount = 1;
+                cooldownText.text = countDown.ToString();
+                while (countDown > 0)
+                {
+                    countDown -= Time.deltaTime;
+                    cooldownText.text = Mathf.CeilToInt(countDown).ToString();
+                    fillImage.fillAmount = countDown / cooldown;
+                    yield return null;
+                }
+                fillImage.fillAmount = 0;
+                cooldownText.text = "";
+                yield return null;
+            }
+        }
     }
 
     private float CalculateDistance(Vector3 destination, Vector3 source)
