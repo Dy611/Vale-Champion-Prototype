@@ -162,7 +162,7 @@ MonoBehaviour:
   applyVigilStrikes: 1
   destroyOnHit: 1
   lifeDuration: 1.5
-  damage: 25
+  damage: 10
 --- !u!65 &8878973510259584224
 BoxCollider:
   m_ObjectHideFlags: 0

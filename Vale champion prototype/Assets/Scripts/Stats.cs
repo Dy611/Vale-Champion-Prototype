@@ -7,6 +7,8 @@ using TMPro;
 public class Stats : MonoBehaviour
 {
     public int vigilStrikes;
+    public int maxVigilStrikes;
+    public float vigilStrikesDecayTimeInitial;
     public float vigilStrikesDecayTime;
     public int maxHP;
     public int maxMana;
@@ -25,6 +27,7 @@ public class Stats : MonoBehaviour
     public TextMeshProUGUI manaText;
     public TextMeshProUGUI vigilStrikedCount;
 
+    private float decayTimerInitial;
     private float decayTimer;
 
     private void Start()
@@ -74,19 +77,25 @@ public class Stats : MonoBehaviour
             vigilStriked.enabled = true;
             vigilStrikedCount.text = vigilStrikes.ToString();
 
-            decayTimer += Time.deltaTime;
-            if(decayTimer >= vigilStrikesDecayTime)
+            decayTimerInitial += Time.deltaTime;
+            if(decayTimerInitial >= vigilStrikesDecayTimeInitial)
             {
-                vigilStrikes--;
-                decayTimer = 0;
-                if(vigilStrikes > 0)
+                decayTimer += Time.deltaTime;
+                if(decayTimer >= vigilStrikesDecayTime)
                 {
-                    vigilStrikedCount.text = vigilStrikes.ToString();
-                }
-                else
-                {
-                    vigilStriked.enabled = false;
-                    vigilStrikedCount.text = "";
+                    vigilStrikes--;
+                    decayTimer = 0;
+                    if (vigilStrikes > 0)
+                    {
+                        vigilStrikedCount.text = vigilStrikes.ToString();
+                    }
+                    else
+                    {
+                        vigilStriked.enabled = false;
+                        vigilStrikedCount.text = "";
+                        decayTimerInitial = 0;
+                        decayTimer = 0;
+                    }
                 }
             }
         }
@@ -101,7 +110,8 @@ public class Stats : MonoBehaviour
     {
         if (applyStrikes)
         {
-            vigilStrikes = Mathf.Clamp(vigilStrikes + 1, 0, 5);
+            vigilStrikes = Mathf.Clamp(vigilStrikes + 1, 0, maxVigilStrikes);
+            decayTimerInitial = 0;
             decayTimer = 0;
         }
 

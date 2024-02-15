@@ -9,6 +9,24 @@ public class Ability : MonoBehaviour
     public float lifeDuration;
     public int damage;
 
+    private List<Stats> hitStats;
+
+    public bool GetVigilStrikedTarget()
+    {
+        foreach(Stats stat in hitStats)
+        {
+            if(stat.vigilStrikes >= stat.maxVigilStrikes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+
     private void Start()
     {
         StartCoroutine(SetLifeDuration());
@@ -18,7 +36,9 @@ public class Ability : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
+            hitStats.Add(other.gameObject.GetComponent<Stats>());
             other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
+
             if(destroyOnHit)
                 Destroy(gameObject);
         }
