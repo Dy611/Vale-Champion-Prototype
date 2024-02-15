@@ -8,7 +8,7 @@ public class Ability : MonoBehaviour
     public float lifeDuration;
     public int damage;
 
-    private void Awake()
+    private void Start()
     {
         StartCoroutine(SetLifeDuration());
     }

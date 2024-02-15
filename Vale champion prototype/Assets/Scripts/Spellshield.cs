@@ -6,6 +6,7 @@ using TMPro;
 public class Spellshield : MonoBehaviour
 {
     public Material invisMat;
+    public Material spellshieldMat;
 
     public float duration;
     public float invisDuration;
@@ -17,6 +18,31 @@ public class Spellshield : MonoBehaviour
     private bool invis;
     private string originalName;
 
+    private void Start()
+    {
+        rends = transform.GetComponentsInChildren<Renderer>();
+        originalMats = new List<Material>();
+
+        for (int i = 0; i < rends.Length; i++)
+        {
+            originalMats.Add(rends[i].material);
+            rends[i].material = spellshieldMat;
+        }
+
+        nameText = GetComponentInChildren<TMP_Text>();
+        originalName = nameText.text;
+        nameText.text = "SpellShield!";
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < rends.Length; i++)
+        {
+            rends[i].material = originalMats[i];
+        }
+        nameText.text = originalName;
+    }
+
     void Update()
     {
         timeElapsed += Time.deltaTime;
@@ -26,22 +52,17 @@ public class Spellshield : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == 7)
+        if (other.gameObject.layer == 7)
         {
             invis = true;
-            rends = transform.GetComponentsInChildren<Renderer>();
-            originalMats = new List<Material>();
 
             for (int i = 0; i < rends.Length; i++)
             {
-                originalMats.Add(rends[i].material);
                 rends[i].material = invisMat;
             }
 
-            nameText = GetComponentInChildren<TMP_Text>();
-            originalName = nameText.text;
             nameText.text = "Invisible!";
             StartCoroutine(InvisTime(invisDuration));
         }
@@ -57,7 +78,7 @@ public class Spellshield : MonoBehaviour
         }
 
         nameText.text = originalName;
-        Destroy(GetComponent<Spellshield>());
+        Destroy(this);
         yield return null;
     }
 }

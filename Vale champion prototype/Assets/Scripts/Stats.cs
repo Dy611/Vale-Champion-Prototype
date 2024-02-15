@@ -37,12 +37,12 @@ public class Stats : MonoBehaviour
     {
         if(hpBarHUD != null)
         {
-            hpBar.fillAmount = (float)currentHP / maxHP;
+            hpBarHUD.fillAmount = (float)currentHP / maxHP;
         }
 
         if(manaBarHUD != null)
         {
-            manaBar.fillAmount = (float)currentMana / maxMana;
+            manaBarHUD.fillAmount = (float)currentMana / maxMana;
         }
 
         if (hpBar != null)
@@ -88,7 +88,8 @@ public class Stats : MonoBehaviour
             decayTimer = 0;
         }
 
-        currentHP -= damage;
+        if(GetComponent<Spellshield>() == null)
+            currentHP -= damage;
     }
 
     private IEnumerator HealthRegen()

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2062848823742939104}
   - component: {fileID: 786243151870106896}
   - component: {fileID: 8878973510259584224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EtherealSpear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
