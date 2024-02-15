@@ -20,8 +20,10 @@ public class Stats : MonoBehaviour
     public Image manaBar;
     public Image hpBarHUD;
     public Image manaBarHUD;
+    public Image vigilStriked;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI manaText;
+    public TextMeshProUGUI vigilStrikedCount;
 
     private float decayTimer;
 
@@ -31,6 +33,8 @@ public class Stats : MonoBehaviour
         StartCoroutine(ManaRegen());
         currentHP = maxHP;
         currentMana = maxMana;
+        vigilStriked.enabled = false;
+        vigilStrikedCount.text = "";
     }
 
     private void Update()
@@ -67,10 +71,23 @@ public class Stats : MonoBehaviour
 
         if(vigilStrikes > 0)
         {
+            vigilStriked.enabled = true;
+            vigilStrikedCount.text = vigilStrikes.ToString();
+
             decayTimer += Time.deltaTime;
             if(decayTimer >= vigilStrikesDecayTime)
             {
-
+                vigilStrikes--;
+                decayTimer = 0;
+                if(vigilStrikes > 0)
+                {
+                    vigilStrikedCount.text = vigilStrikes.ToString();
+                }
+                else
+                {
+                    vigilStriked.enabled = false;
+                    vigilStrikedCount.text = "";
+                }
             }
         }
 

@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 100
   maxMana: 100
   currentHP: 0
@@ -885,8 +885,10 @@ MonoBehaviour:
   manaBar: {fileID: 1357184141}
   hpBarHUD: {fileID: 0}
   manaBarHUD: {fileID: 0}
+  vigilStriked: {fileID: 981802505}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
+  vigilStrikedCount: {fileID: 1974527792}
 --- !u!1 &241798722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,6 +5300,18 @@ Transform:
   m_Father: {fileID: 1958931331}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &422388726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1307716216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &437138203
 GameObject:
   m_ObjectHideFlags: 0
@@ -8983,6 +8997,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839092804}
   m_CullTransparentMesh: 1
+--- !u!114 &841069021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1307716216}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874397147
 GameObject:
   m_ObjectHideFlags: 0
@@ -9538,6 +9564,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954692473}
   m_CullTransparentMesh: 1
+--- !u!114 &981802505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1721796360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &989986983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd99ad0d5e351d641a15dab5e32f47f0,
@@ -9969,6 +10007,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071538654}
   m_CullTransparentMesh: 1
+--- !u!114 &1073946514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1917393664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1082025933 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
@@ -9979,6 +10029,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1128871281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 885473045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1133929912
@@ -11901,6 +11963,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135764684}
   m_CullTransparentMesh: 1
+--- !u!114 &1143086198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 391148961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1156083624
 GameObject:
   m_ObjectHideFlags: 0
@@ -15034,6 +15108,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401930913}
   m_CullTransparentMesh: 1
+--- !u!114 &1444169538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1269209882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1457617808
 GameObject:
   m_ObjectHideFlags: 0
@@ -15156,7 +15242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 100
   maxMana: 100
   currentHP: 0
@@ -15169,8 +15255,10 @@ MonoBehaviour:
   manaBar: {fileID: 1542587717}
   hpBarHUD: {fileID: 0}
   manaBarHUD: {fileID: 0}
+  vigilStriked: {fileID: 1948414878}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
+  vigilStrikedCount: {fileID: 1444169538}
 --- !u!1 &1469505348
 GameObject:
   m_ObjectHideFlags: 0
@@ -15593,6 +15681,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485388691}
   m_CullTransparentMesh: 1
+--- !u!114 &1491415685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 391148961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1512382683
 GameObject:
   m_ObjectHideFlags: 0
@@ -15669,6 +15769,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512382683}
   m_CullTransparentMesh: 1
+--- !u!114 &1528057999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 885473045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1542587717 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
@@ -16732,7 +16844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 100
   maxMana: 100
   currentHP: 0
@@ -16745,8 +16857,10 @@ MonoBehaviour:
   manaBar: {fileID: 1945177539}
   hpBarHUD: {fileID: 0}
   manaBarHUD: {fileID: 0}
+  vigilStriked: {fileID: 1528057999}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
+  vigilStrikedCount: {fileID: 1128871281}
 --- !u!54 &1720934018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17164,7 +17278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 100
   maxMana: 100
   currentHP: 0
@@ -17177,8 +17291,22 @@ MonoBehaviour:
   manaBar: {fileID: 750510009}
   hpBarHUD: {fileID: 0}
   manaBarHUD: {fileID: 0}
+  vigilStriked: {fileID: 1073946514}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
+  vigilStrikedCount: {fileID: 1801169195}
+--- !u!114 &1801169195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1917393664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1802027940
 GameObject:
   m_ObjectHideFlags: 0
@@ -18116,7 +18244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 100
   maxMana: 100
   currentHP: 0
@@ -18129,8 +18257,10 @@ MonoBehaviour:
   manaBar: {fileID: 66960614}
   hpBarHUD: {fileID: 0}
   manaBarHUD: {fileID: 0}
+  vigilStriked: {fileID: 1143086198}
   hpText: {fileID: 0}
   manaText: {fileID: 0}
+  vigilStrikedCount: {fileID: 1491415685}
 --- !u!54 &1925325510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18163,6 +18293,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3011746243973749504, guid: 6aae4496e3275e540a2f8635e87ad437,
     type: 3}
   m_PrefabInstance: {fileID: 885473045}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1948414878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2008965636697731201, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1269209882}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -18338,7 +18480,6 @@ MonoBehaviour:
   qChargeText: {fileID: 0}
   abilityCDFillColorDefault: {r: 0, g: 0, b: 0, a: 0}
   abilityCDFillColorCharges: {r: 0, g: 0, b: 0, a: 0}
-  damageVolume: {fileID: 0}
   dashMat: {fileID: 0}
   qCooldown: 10
   qManaCost: 40
@@ -18432,8 +18573,10 @@ MonoBehaviour:
   manaBar: {fileID: 1082025933}
   hpBarHUD: {fileID: 809441569}
   manaBarHUD: {fileID: 896118663}
+  vigilStriked: {fileID: 0}
   hpText: {fileID: 992356903}
   manaText: {fileID: 830635714}
+  vigilStrikedCount: {fileID: 0}
 --- !u!136 &1958931335
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18457,6 +18600,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1974527792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 402376777349041372, guid: 6aae4496e3275e540a2f8635e87ad437,
+    type: 3}
+  m_PrefabInstance: {fileID: 1721796360}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1978483857
 GameObject:
   m_ObjectHideFlags: 0
@@ -22121,7 +22276,6 @@ MonoBehaviour:
   qChargeText: {fileID: 2049150665}
   abilityCDFillColorDefault: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
   abilityCDFillColorCharges: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
-  damageVolume: {fileID: 0}
   dashMat: {fileID: 2100000, guid: 4010e321a373cb644b6e00308d0f4c08, type: 2}
   qCooldown: 10
   qManaCost: 40
@@ -22222,7 +22376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vigilStrikes: 0
-  vigilStrikesDecayTime: 0
+  vigilStrikesDecayTime: 3
   maxHP: 670
   maxMana: 415
   currentHP: 0
@@ -22235,8 +22389,10 @@ MonoBehaviour:
   manaBar: {fileID: 1307716217}
   hpBarHUD: {fileID: 809441569}
   manaBarHUD: {fileID: 896118663}
+  vigilStriked: {fileID: 841069021}
   hpText: {fileID: 992356903}
   manaText: {fileID: 830635714}
+  vigilStrikedCount: {fileID: 422388726}
 --- !u!195 &5279382564939403560
 NavMeshAgent:
   m_ObjectHideFlags: 0
