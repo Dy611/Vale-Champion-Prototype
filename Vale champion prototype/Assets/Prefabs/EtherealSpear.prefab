@@ -163,6 +163,8 @@ MonoBehaviour:
   destroyOnHit: 1
   lifeDuration: 1.5
   damage: 10
+  tagsToHit:
+  - Enemy
 --- !u!65 &8878973510259584224
 BoxCollider:
   m_ObjectHideFlags: 0

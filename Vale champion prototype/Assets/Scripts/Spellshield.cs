@@ -10,12 +10,13 @@ public class Spellshield : MonoBehaviour
 
     public float duration;
     public float invisDuration;
+    public bool invis;
+    public List<string> tagsToAvoid;
 
     private float timeElapsed;
-    private Renderer[] rends;
+    public Renderer[] rends;
     private List<Material> originalMats;
     private TMP_Text nameText;
-    private bool invis;
     private string originalName;
 
     private void Start()
@@ -54,17 +55,23 @@ public class Spellshield : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7)
+        if (other.gameObject.layer == 7 && !invis)
         {
-            invis = true;
-
-            for (int i = 0; i < rends.Length; i++)
+            foreach (string tag in tagsToAvoid)
             {
-                rends[i].material = invisMat;
-            }
+                if (!other.transform.CompareTag(tag))
+                {
+                    invis = true;
 
-            nameText.text = "Invisible!";
-            StartCoroutine(InvisTime(invisDuration));
+                    for (int i = 0; i < rends.Length; i++)
+                    {
+                        rends[i].material = invisMat;
+                    }
+
+                    nameText.text = "Invisible!";
+                    StartCoroutine(InvisTime(invisDuration));
+                }
+            }
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.AI;
 
 public class Stats : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Stats : MonoBehaviour
     public float healTickRate;
     public float manaTickAmount;
     public float manaTickRate;
+    public GameObject inGameUI;
     public Image hpBar;
     public Image manaBar;
     public Image hpBarHUD;
@@ -27,6 +29,9 @@ public class Stats : MonoBehaviour
     public TextMeshProUGUI manaText;
     public TextMeshProUGUI vigilStrikedCount;
 
+    public Component[] disableComps;
+
+    private bool isDead;
     private float decayTimerInitial;
     private float decayTimer;
 
@@ -100,9 +105,34 @@ public class Stats : MonoBehaviour
             }
         }
 
-        if(currentHP <= 0)
+        if(currentHP <= 0 && !isDead)
         {
-            Destroy(gameObject);
+            isDead = true;
+            GetComponentInChildren<Animator>().SetTrigger("Death");
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<Collider>().enabled = false;
+
+            Collider[] cols = GetComponents<Collider>();
+            
+            foreach(Collider col in cols)
+            {
+                col.enabled = false;
+            }
+
+            inGameUI.SetActive(false);
+            if (GetComponent<Patrol>())
+            {
+                GetComponent<Patrol>().enabled = false;
+            }
+            if (GetComponent<SimpleMovement>())
+            {
+                SimpleMovement.stopMovement = false;
+                GetComponent<SimpleMovement>().enabled = false;
+            }
+            if (GetComponent<ProjectileThrower>())
+            {
+                GetComponent<ProjectileThrower>().enabled = false;
+            }
         }
     }
 
@@ -115,7 +145,7 @@ public class Stats : MonoBehaviour
             decayTimer = 0;
         }
 
-        if(GetComponent<Spellshield>() == null)
+        if(GetComponent<Spellshield>() == null || GetComponent<Spellshield>().invis)
             currentHP -= damage;
     }
 

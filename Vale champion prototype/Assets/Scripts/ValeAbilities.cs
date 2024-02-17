@@ -71,6 +71,7 @@ public class ValeAbilities : MonoBehaviour
     public int rManaCost;
     public float rDuration;
     public float rHealPercent;
+    public float rTargetRange;
 
     private RaycastHit hit;
     private NavMeshHit navHit;
@@ -135,8 +136,16 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnRAbility(InputValue input)
     {
-        Debug.Log("R Ability");
-        StartCoroutine(RAbility());
+        GetMousePosition();
+
+        if (hit.transform.gameObject.CompareTag("Ally") && rFill.fillAmount == 0 && valeStats.currentMana >= rManaCost && CalculateDistance(hit.transform.position, transform.position) < rTargetRange)
+        {
+            valeStats.currentMana -= rManaCost;
+            agent.SetDestination(transform.position);
+            RotateVale(hit.point);
+            valeAnim.SetTrigger("WAbility");
+            StartCoroutine(AbilityCooldown(rCooldown, rFill, rCDText, false, 0, null));
+        }
     }
 
     private IEnumerator QAbility()
@@ -147,6 +156,7 @@ public class ValeAbilities : MonoBehaviour
         }
 
         Ability damageVolume = gameObject.AddComponent<Ability>();
+        damageVolume.tag = gameObject.tag;
         damageVolume.lifeDuration = 100;
         damageVolume.applyVigilStrikes = true;
         damageVolume.damage = qDamage;
@@ -228,6 +238,8 @@ public class ValeAbilities : MonoBehaviour
     public void StartWAbility()
     {
         Spellshield currShield = (Spellshield)hit.transform.gameObject.AddComponent(typeof(Spellshield));
+        currShield.tagsToAvoid = new List<string>();
+        currShield.tagsToAvoid.Add(gameObject.tag);
         currShield.spellshieldMat = spellshieldMat;
         currShield.invisMat = invisMat;
         currShield.duration = wShieldDuration;
@@ -241,8 +253,8 @@ public class ValeAbilities : MonoBehaviour
 
     private IEnumerator EAbility()
     {
-
         GameObject spawnedObj = Instantiate(eProjectile, eSpawnPoint);
+        spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
         spawnedObj.GetComponent<Ability>().lifeDuration = eLife;
 
@@ -256,11 +268,6 @@ public class ValeAbilities : MonoBehaviour
     public void ESpawnObj()
     {
         StartCoroutine(EAbility());
-    }
-
-    private IEnumerator RAbility()
-    {
-        yield return null;
     }
 
     private IEnumerator AbilityCooldown(float cooldown, Image fillImage, TMP_Text cooldownText, bool hasCharges, int currentCharges, TMP_Text chargeText)

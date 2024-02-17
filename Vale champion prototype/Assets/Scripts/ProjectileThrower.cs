@@ -34,5 +34,7 @@ public class ProjectileThrower : MonoBehaviour
     public void SpawnObj()
     {
         spawnedObj = Instantiate(projectile, spawnPoint);
+        spawnedObj.tag = gameObject.tag;
+        spawnedObj.transform.SetParent(null);
     }
 }

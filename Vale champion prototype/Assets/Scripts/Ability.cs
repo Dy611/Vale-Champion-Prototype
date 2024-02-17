@@ -8,6 +8,7 @@ public class Ability : MonoBehaviour
     public bool destroyOnHit;
     public float lifeDuration;
     public int damage;
+    public List<string> tagsToAvoid;
 
     private List<Stats> hitStats;
 
@@ -29,6 +30,9 @@ public class Ability : MonoBehaviour
 
     private void Start()
     {
+        hitStats = new List<Stats>();
+        tagsToAvoid = new List<string>();
+        tagsToAvoid.Add(gameObject.tag);
         StartCoroutine(SetLifeDuration());
     }
 
@@ -36,11 +40,17 @@ public class Ability : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            hitStats.Add(other.gameObject.GetComponent<Stats>());
-            other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
+            foreach(string tag in tagsToAvoid)
+            {
+                if (!other.transform.CompareTag(tag))
+                {
+                    hitStats.Add(other.gameObject.GetComponent<Stats>());
+                    other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
 
-            if(destroyOnHit)
-                Destroy(gameObject);
+                    if (destroyOnHit)
+                        Destroy(gameObject);
+                }
+            }
         }
     }
 
