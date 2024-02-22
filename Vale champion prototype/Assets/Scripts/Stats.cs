@@ -178,6 +178,11 @@ public class Stats : MonoBehaviour
         if(GetComponent<Spellshield>() == null || GetComponent<Spellshield>().invis)
             currentHP -= damage;
     }
+
+    public void ApplySlow(float slowPercent, float duration)
+    {
+        StartCoroutine(Slow(slowPercent, duration));
+    }
     #endregion Public Methods
 
     #region Coroutines
@@ -205,6 +210,15 @@ public class Stats : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    private IEnumerator Slow(float slowPercent, float duration)
+    {
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        float originalSpeed = agent.speed;
+        agent.speed *= (1 - slowPercent);
+        yield return new WaitForSeconds(duration);
+        agent.speed = originalSpeed;
     }
     #endregion Coroutines
 }

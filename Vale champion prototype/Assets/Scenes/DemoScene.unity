@@ -1146,7 +1146,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.75
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -1206,7 +1206,7 @@ MonoBehaviour:
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
   vigilStrikesDecayTime: 0.5
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -1312,7 +1312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241798722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0.8}
   m_LocalScale: {x: 0.5555556, y: 0.5555556, z: 0.5555556}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17136,7 +17136,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.75
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -17196,7 +17196,7 @@ MonoBehaviour:
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
   vigilStrikesDecayTime: 0.5
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -19444,7 +19444,7 @@ MonoBehaviour:
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
   vigilStrikesDecayTime: 0.5
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -19502,7 +19502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
-  delay: 2
+  delay: 1.25
   statComp: {fileID: 1720934017}
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
@@ -19518,7 +19518,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -19859,7 +19859,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.75
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -19919,7 +19919,7 @@ MonoBehaviour:
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
   vigilStrikesDecayTime: 0.5
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -20501,7 +20501,7 @@ MonoBehaviour:
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
   vigilStrikesDecayTime: 0.5
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -20559,7 +20559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
-  delay: 2
+  delay: 2.5
   statComp: {fileID: 1875432750}
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
@@ -20575,7 +20575,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 0
   avoidancePriority: 40
   m_AngularSpeed: 0
@@ -21279,7 +21279,7 @@ MonoBehaviour:
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
   vigilStrikesDecayTime: 3
-  maxHP: 100
+  maxHP: 1000
   maxMana: 100
   currentHP: 0
   currentMana: 0
@@ -21544,6 +21544,7 @@ MonoBehaviour:
   wTargetRange: 6
   eCooldown: 15
   eManaCost: 74
+  eDamage: 0
   eSlowPercent: 20
   eSlowDuration: 1.5
   eRefundPercent: 0.2
@@ -25620,18 +25621,19 @@ MonoBehaviour:
   wShieldDuration: 1.5
   wInvisDuration: 0.75
   wRefundPercent: 0.25
-  wTargetRange: 6
+  wTargetRange: 6.4
   eCooldown: 15
   eManaCost: 74
-  eSlowPercent: 20
+  eDamage: 100
+  eSlowPercent: 0.2
   eSlowDuration: 1.5
   eRefundPercent: 0.2
   eQRefundPercent: 0.5
   eProjectile: {fileID: 7239551046416767604, guid: 7a68a19e5c880a049b9d4f095d679dff,
     type: 3}
   eSpawnPoint: {fileID: 241798723}
-  eSpeed: 25
-  eLife: 0.15
+  eSpeed: 15
+  eLife: 0.11
   protectionMat: {fileID: 2100000, guid: b9f1326ee0b0feb47b3c61ac6497b59b, type: 2}
   rCooldown: 90
   rManaCost: 60
@@ -25711,7 +25713,7 @@ MonoBehaviour:
   applyVigilStrikes: 1
   attackRange: 2
   attackDelay: 1.5
-  attackDamage: 10
+  attackDamage: 70
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0

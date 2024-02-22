@@ -9,6 +9,9 @@ public class Ability : MonoBehaviour
     public float speed;
     public int damage;
     public bool applyVigilStrikes;
+    public bool applySlow;
+    public float slowPercent;
+    public float slowDuration;
 
     [SerializeField] bool destroyOnHit;
 
@@ -41,6 +44,9 @@ public class Ability : MonoBehaviour
                 {
                     hitStats.Add(other.gameObject.GetComponent<Stats>());
                     other.gameObject.GetComponent<Stats>().ApplyDamage(applyVigilStrikes, damage);
+
+                    if (applySlow)
+                        other.gameObject.GetComponent<Stats>().ApplySlow(slowPercent, slowDuration);
 
                     if (destroyOnHit)
                         Destroy(gameObject);

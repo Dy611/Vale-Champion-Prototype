@@ -67,8 +67,6 @@ public class Spellshield : MonoBehaviour
             {
                 if (!other.transform.CompareTag(tag))
                 {
-                    invis = true;
-
                     for (int i = 0; i < rends.Length; i++)
                     {
                         rends[i].material = invisMat;
@@ -85,6 +83,9 @@ public class Spellshield : MonoBehaviour
     #region Coroutines
     private IEnumerator InvisTime(float length)
     {
+        yield return new WaitForEndOfFrame();
+        invis = true;
+
         yield return new WaitForSeconds(length);
 
         for (int i = 0; i < rends.Length; i++)

@@ -57,6 +57,7 @@ public class ValeAbilities : MonoBehaviour
     [Header("E Ability")]
     public float eCooldown;
     public int eManaCost;
+    public int eDamage;
     public float eSlowPercent;
     public float eSlowDuration;
     public float eRefundPercent;
@@ -279,7 +280,14 @@ public class ValeAbilities : MonoBehaviour
         GameObject spawnedObj = Instantiate(eProjectile, eSpawnPoint);
         spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
-        spawnedObj.GetComponent<Ability>().lifeDuration = eLife;
+
+        Ability spearAbility = spawnedObj.GetComponent<Ability>();
+        spearAbility.lifeDuration = eLife;
+        spearAbility.damage = eDamage;
+        spearAbility.speed = eSpeed;
+        spearAbility.applySlow = true;
+        spearAbility.slowPercent = eSlowPercent;
+        spearAbility.slowDuration = eSlowDuration;
         SimpleMovement.stopMovement = false;
 
         while (spawnedObj != null)
