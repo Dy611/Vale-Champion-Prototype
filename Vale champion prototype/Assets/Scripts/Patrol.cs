@@ -21,15 +21,15 @@ public class Patrol : MonoBehaviour
         if(timeElapsed > 0.2f)
             anim.SetBool("Walking", false);
 
-        if(CalculateDistance(startPos, transform.position) <= 0.1f || CalculateDistance(endPos, transform.position) <= 0.1f)
+        if(StandardFunctions.CalculateDistance(startPos, transform.position) <= 0.1f || StandardFunctions.CalculateDistance(endPos, transform.position) <= 0.1f)
             timeElapsed += Time.deltaTime;
 
-        if(CalculateDistance(startPos, transform.position) <= 0.1f)
+        if(StandardFunctions.CalculateDistance(startPos, transform.position) <= 0.1f)
         {
             if(timeElapsed >= delay)
                 PatrolTo(endPos);
         }
-        else if (CalculateDistance(endPos, transform.position) <= 0.1f)
+        else if (StandardFunctions.CalculateDistance(endPos, transform.position) <= 0.1f)
         {
             if (timeElapsed >= delay)
                 PatrolTo(startPos);
@@ -57,14 +57,6 @@ public class Patrol : MonoBehaviour
 
         //Update animator
         anim.SetBool("Walking", true);
-    }
-
-    private float CalculateDistance(Vector3 destination, Vector3 source)
-    {
-        float xDiff = destination.x - source.x;
-        float zDiff = destination.z - source.z;
-
-        return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
     }
     #endregion Private Methods
 }

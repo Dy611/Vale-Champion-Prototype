@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SimpleMovement : MonoBehaviour
 {
+    #region Variables
     public bool autoAttacking;
     public Stats statComp;
     public Camera cam;
@@ -18,8 +19,9 @@ public class SimpleMovement : MonoBehaviour
     private NavMeshHit myNavHit;
     private float currTimer;
     private GameObject enemyTarget;
+    #endregion Variables
 
-    // Update is called once per frame
+    #region Unity Methods
     void Update()
     {
         //Update Animation When Walking
@@ -30,12 +32,10 @@ public class SimpleMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButton(1))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, 1000f, movementLayers);
+            RaycastHit hit = StandardFunctions.GetMousePosition(movementLayers);
+            RaycastHit enemyHit = StandardFunctions.GetMousePosition(enemyLayers);
 
-            RaycastHit enemyHit;
-            if (Physics.Raycast(ray, out enemyHit, 1000f, enemyLayers) && enemyHit.transform.CompareTag("Enemy"))
+            if (enemyHit.transform != null && enemyHit.transform.CompareTag("Enemy"))
             {
                 enemyTarget = enemyHit.transform.gameObject;
             }
@@ -49,16 +49,16 @@ public class SimpleMovement : MonoBehaviour
                 StartCoroutine(StoreClick(myNavHit.position));
         }
 
-        if(enemyTarget != null && enemyTarget.GetComponent<Stats>().currentHP > 0 && CalculateDistance(enemyTarget.transform.position, transform.position) <= statComp.attackRange && !autoAttacking)
+        if(enemyTarget != null && enemyTarget.GetComponent<Stats>().currentHP > 0 && StandardFunctions.CalculateDistance(enemyTarget.transform.position, transform.position) <= statComp.attackRange && !autoAttacking)
         {
             agent.SetDestination(transform.position);
-            RotateVale(enemyTarget.transform.position);
+            StandardFunctions.RotateObj(gameObject, enemyTarget.transform.position);
             autoAttacking = true;
             if(onlyONE == false)
             StartCoroutine(AutoAttacking());
         }
 
-        if (CalculateDistance(agent.destination, transform.position) < 1)
+        if (StandardFunctions.CalculateDistance(agent.destination, transform.position) < 1)
         {
             currTimer += Time.deltaTime;
             if (currTimer >= fixDestinationDelay)
@@ -68,29 +68,11 @@ public class SimpleMovement : MonoBehaviour
             currTimer = 0;
     }
 
-    private IEnumerator StoreClick(Vector3 targetPos)
-    {
-        while (stopMovement)
-        {
-            yield return null;
-        }
-        agent.SetDestination(targetPos);
-        yield return null;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 6 && !stopMovement)
         {
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 6 && !stopMovement)
-        {
-            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         }
     }
 
@@ -102,7 +84,7 @@ public class SimpleMovement : MonoBehaviour
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 direction = myNavHit.position - transform.position;
 
-            if (Vector3.Dot(forward, direction) > 0 && CalculateDistance(myNavHit.position, transform.position) < agentProximityRange)
+            if (Vector3.Dot(forward, direction) > 0 && StandardFunctions.CalculateDistance(myNavHit.position, transform.position) < agentProximityRange)
             {
                 agent.SetDestination(transform.position);
                 valeAnim.SetBool("Walking", false);
@@ -110,18 +92,41 @@ public class SimpleMovement : MonoBehaviour
         }
     }
 
-    private float CalculateDistance(Vector3 destination, Vector3 source)
+    private void OnTriggerExit(Collider other)
     {
-        float xDiff = destination.x - source.x;
-        float zDiff = destination.z - source.z;
-
-        return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
+        if (other.gameObject.layer == 6 && !stopMovement)
+        {
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(myNavHit.position, 0.25f);
+    }
+    #endregion Unity Methods
+
+    #region Public Methods
+    public void AutoAttack()
+    {
+        if (enemyTarget != null)
+        {
+            StandardFunctions.RotateObj(gameObject, enemyTarget.transform.position);
+            enemyTarget.GetComponent<Stats>().ApplyDamage(statComp.applyVigilStrikes, statComp.attackDamage);
+        }
+    }
+    #endregion Public Methods
+
+    #region Coroutines
+    private IEnumerator StoreClick(Vector3 targetPos)
+    {
+        while (stopMovement)
+        {
+            yield return null;
+        }
+        agent.SetDestination(targetPos);
+        yield return null;
     }
 
     private bool onlyONE;
@@ -143,20 +148,5 @@ public class SimpleMovement : MonoBehaviour
         }
         onlyONE = false;
     }
-
-    public void AutoAttack()
-    {
-        if(enemyTarget != null)
-        {
-            RotateVale(enemyTarget.transform.position);
-            enemyTarget.GetComponent<Stats>().ApplyDamage(statComp.applyVigilStrikes, statComp.attackDamage);
-        }
-    }
-
-    private void RotateVale(Vector3 destination)
-    {
-        Vector3 lookDir = destination - transform.position;
-        lookDir.y = 0;
-        transform.rotation = Quaternion.LookRotation(lookDir);
-    }
+    #endregion Coroutines
 }

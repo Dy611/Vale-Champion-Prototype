@@ -8,6 +8,7 @@ using TMPro;
 
 public class ValeAbilities : MonoBehaviour
 {
+    #region Variables
     [Header("Requirements")]
     public NavMeshAgent agent;
     public Stats valeStats;
@@ -81,7 +82,9 @@ public class ValeAbilities : MonoBehaviour
 
     private Renderer[] rends;
     private List<Material> originalMats;
+    #endregion Variables
 
+    #region Unity Methods
     private void Start()
     {
         qCurrentCharges = qMaxCharges;
@@ -94,7 +97,9 @@ public class ValeAbilities : MonoBehaviour
             originalMats.Add(rends[i].material);
         }
     }
+    #endregion Unity Methods
 
+    #region Public Methods
     public void OnQAbility(InputValue input)
     {
         if ((qFill.fillAmount == 0 || qCurrentCharges > 0) && valeStats.currentMana >= qManaCost)
@@ -113,13 +118,13 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnWAbility(InputValue input)
     {
-        GetMousePosition();
+        hit = StandardFunctions.GetMousePosition();
 
-        if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost && CalculateDistance(hit.transform.position, transform.position) < wTargetRange)
+        if (hit.transform.gameObject.CompareTag("Ally") && wFill.fillAmount == 0 && valeStats.currentMana >= wManaCost && StandardFunctions.CalculateDistance(hit.transform.position, transform.position) < wTargetRange)
         {
             valeStats.currentMana -= wManaCost;
             agent.SetDestination(transform.position);
-            RotateVale(hit.point);
+            StandardFunctions.RotateObj(gameObject, hit.point);
             valeAnim.SetTrigger("WAbility");
             StartCoroutine(AbilityCooldown(wCooldown, wFill, wCDText, false, 0, null));
         }
@@ -130,8 +135,8 @@ public class ValeAbilities : MonoBehaviour
         {
             valeStats.currentMana -= eManaCost;
             agent.SetDestination(transform.position);
-            GetMousePosition();
-            RotateVale(hit.point);
+            hit = StandardFunctions.GetMousePosition();
+            StandardFunctions.RotateObj(gameObject, hit.point);
             SimpleMovement.stopMovement = true;
             valeAnim.SetTrigger("EAbility");
             StartCoroutine(AbilityCooldown(eCooldown, eFill, eCDText, false, 0, null));
@@ -139,18 +144,49 @@ public class ValeAbilities : MonoBehaviour
     }
     public void OnRAbility(InputValue input)
     {
-        GetMousePosition();
+        hit = StandardFunctions.GetMousePosition();
 
-        if (hit.transform.gameObject.CompareTag("Ally") && hit.transform.gameObject != gameObject && rFill.fillAmount == 0 && valeStats.currentMana >= rManaCost && CalculateDistance(hit.transform.position, transform.position) < rTargetRange)
+        if (hit.transform.gameObject.CompareTag("Ally") && hit.transform.gameObject != gameObject && rFill.fillAmount == 0 && valeStats.currentMana >= rManaCost && StandardFunctions.CalculateDistance(hit.transform.position, transform.position) < rTargetRange)
         {
             valeStats.currentMana -= rManaCost;
             agent.SetDestination(transform.position);
-            RotateVale(hit.point);
+            StandardFunctions.RotateObj(gameObject, hit.point);
             valeAnim.SetTrigger("RAbility");
             StartCoroutine(AbilityCooldown(rCooldown, rFill, rCDText, false, 0, null));
         }
     }
 
+    public void StartWAbility()
+    {
+        Spellshield currShield = (Spellshield)hit.transform.gameObject.AddComponent(typeof(Spellshield));
+        currShield.tagsToAvoid = new List<string>();
+        currShield.tagsToAvoid.Add(gameObject.tag);
+        currShield.spellshieldMat = spellshieldMat;
+        currShield.invisMat = invisMat;
+        currShield.duration = wShieldDuration;
+        currShield.invisDuration = wInvisDuration;
+    }
+
+    public void StartEAbility()
+    {
+        StartCoroutine(EAbility());
+    }
+
+    public void ESpawnObj()
+    {
+        StartCoroutine(EAbility());
+    }
+
+    public void StartRAbility()
+    {
+        VigilProtected currProtection = (VigilProtected)hit.transform.gameObject.AddComponent(typeof(VigilProtected));
+        currProtection.duration = rDuration;
+        currProtection.vale = gameObject;
+        currProtection.protectedMat = protectionMat;
+    }
+    #endregion Public Methods
+
+    #region Coroutines
     private IEnumerator QAbility()
     {
         for (int i = 0; i < rends.Length; i++)
@@ -168,10 +204,10 @@ public class ValeAbilities : MonoBehaviour
         //Prevent Player From "Breaking" Out Of Ability
         SimpleMovement.stopMovement = true;
 
-        GetMousePosition();
+        hit = StandardFunctions.GetMousePosition();
 
         //Rotate Character
-        RotateVale(hit.point);
+        StandardFunctions.RotateObj(gameObject, hit.point);
 
         //Determine If Ability Is Towards Enemy
         bool towardsEnemy = false;
@@ -212,10 +248,10 @@ public class ValeAbilities : MonoBehaviour
 
         //Move Character
         agent.SetDestination(navHit.position);
-        float distance = CalculateDistance(navHit.position, transform.position);
+        float distance = StandardFunctions.CalculateDistance(navHit.position, transform.position);
         while (distance >= 0.1f)
         {
-            distance = CalculateDistance(navHit.position, transform.position);
+            distance = StandardFunctions.CalculateDistance(navHit.position, transform.position);
             yield return null;
         }
 
@@ -238,29 +274,6 @@ public class ValeAbilities : MonoBehaviour
         yield return null;
     }
 
-    public void StartWAbility()
-    {
-        Spellshield currShield = (Spellshield)hit.transform.gameObject.AddComponent(typeof(Spellshield));
-        currShield.tagsToAvoid = new List<string>();
-        currShield.tagsToAvoid.Add(gameObject.tag);
-        currShield.spellshieldMat = spellshieldMat;
-        currShield.invisMat = invisMat;
-        currShield.duration = wShieldDuration;
-        currShield.invisDuration = wInvisDuration;
-    }
-
-    public void StartEAbility()
-    {
-        StartCoroutine(EAbility());
-    }
-    public void StartRAbility()
-    {
-        VigilProtected currProtection = (VigilProtected)hit.transform.gameObject.AddComponent(typeof(VigilProtected));
-        currProtection.duration = rDuration;
-        currProtection.vale = gameObject;
-        currProtection.protectedMat = protectionMat;
-    }
-
     private IEnumerator EAbility()
     {
         GameObject spawnedObj = Instantiate(eProjectile, eSpawnPoint);
@@ -275,18 +288,12 @@ public class ValeAbilities : MonoBehaviour
             yield return null;
         }
     }
-
-    public void ESpawnObj()
-    {
-        StartCoroutine(EAbility());
-    }
-
     private IEnumerator AbilityCooldown(float cooldown, Image fillImage, TMP_Text cooldownText, bool hasCharges, int currentCharges, TMP_Text chargeText)
     {
         if (hasCharges)
         {
             //Set the fill color
-            if(currentCharges > 0)
+            if (currentCharges > 0)
             {
                 fillImage.color = abilityCDFillColorCharges;
                 chargeText.text = currentCharges.ToString();
@@ -315,7 +322,7 @@ public class ValeAbilities : MonoBehaviour
 
                 //I must figure out how to decouple you!
                 qCurrentCharges++;
-                if(qCurrentCharges == qMaxCharges)
+                if (qCurrentCharges == qMaxCharges)
                 {
                     chargeText.text = (currentCharges + 1).ToString();
                     yield return null;
@@ -349,26 +356,5 @@ public class ValeAbilities : MonoBehaviour
             }
         }
     }
-
-    private float CalculateDistance(Vector3 destination, Vector3 source)
-    {
-        float xDiff = destination.x - source.x;
-        float zDiff = destination.z - source.z;
-
-        return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
-    }
-
-    private void RotateVale(Vector3 destination)
-    {
-        Vector3 lookDir = destination - transform.position;
-        lookDir.y = 0;
-        transform.rotation = Quaternion.LookRotation(lookDir);
-    }
-
-    private void GetMousePosition()
-    {
-        //Determine Direction By Getting Mouse Position
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out hit);
-    }
+    #endregion Coroutines
 }

@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.AI;
+using TMPro;
 
 public class Stats : MonoBehaviour
 {
-    public Texture2D hoverCursor;
+    #region Variables
+    [SerializeField] Texture2D hoverCursor;
 
     public bool applyVigilStrikes;
     public float attackRange;
@@ -39,7 +40,9 @@ public class Stats : MonoBehaviour
     private bool isDead;
     private float decayTimerInitial;
     private float decayTimer;
+    #endregion Variables
 
+    #region Unity Methods
     private void Start()
     {
         StartCoroutine(HealthRegen());
@@ -116,6 +119,20 @@ public class Stats : MonoBehaviour
         }
     }
 
+    void OnMouseEnter()
+    {
+        if (hoverCursor)
+            Cursor.SetCursor(hoverCursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    void OnMouseExit()
+    {
+        // Pass 'null' to the texture parameter to use the default system cursor.
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+    #endregion Unity Methods
+
+    #region Public Methods
     public void Die()
     {
         isDead = true;
@@ -161,7 +178,9 @@ public class Stats : MonoBehaviour
         if(GetComponent<Spellshield>() == null || GetComponent<Spellshield>().invis)
             currentHP -= damage;
     }
+    #endregion Public Methods
 
+    #region Coroutines
     private IEnumerator HealthRegen()
     {
         while(!isDead)
@@ -187,16 +206,5 @@ public class Stats : MonoBehaviour
 
         yield return null;
     }
-
-    void OnMouseEnter()
-    {
-        if(hoverCursor)
-        Cursor.SetCursor(hoverCursor, Vector2.zero, CursorMode.Auto);
-    }
-
-    void OnMouseExit()
-    {
-        // Pass 'null' to the texture parameter to use the default system cursor.
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-    }
+    #endregion Coroutines
 }
