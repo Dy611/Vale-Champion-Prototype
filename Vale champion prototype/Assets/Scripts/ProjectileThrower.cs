@@ -4,7 +4,9 @@ using UnityEngine;
 public class ProjectileThrower : MonoBehaviour
 {
     #region Variables
-    [SerializeField] bool fire = true;
+    public bool fire = true;
+    public bool applyVigilStrikes;
+
     [SerializeField] float delay;
 
     [SerializeField] GameObject projectile;
@@ -25,6 +27,7 @@ public class ProjectileThrower : MonoBehaviour
         GameObject spawnedObj = Instantiate(projectile, spawnPoint);
         spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
+        spawnedObj.GetComponent<Ability>().applyVigilStrikes = applyVigilStrikes;
     }
     #endregion Public Methods
 
@@ -34,7 +37,8 @@ public class ProjectileThrower : MonoBehaviour
         while (fire)
         {
             yield return new WaitForSeconds(delay);
-            anim.SetTrigger("Cast");
+            if(fire)
+                anim.SetTrigger("Cast");
         }
     }
     #endregion Coroutines

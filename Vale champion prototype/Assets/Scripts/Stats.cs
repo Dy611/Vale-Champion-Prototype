@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class Stats : MonoBehaviour
 {
+    public Texture2D hoverCursor;
+
     public int vigilStrikes;
     public int maxVigilStrikes;
     public float vigilStrikesDecayTimeInitial;
@@ -104,7 +106,7 @@ public class Stats : MonoBehaviour
             }
         }
 
-        if(currentHP <= 0 && !isDead)
+        if(currentHP <= 0 && !isDead && !GetComponent<VigilProtected>())
         {
             Die();
         }
@@ -113,6 +115,8 @@ public class Stats : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        currentHP = 0;
+        currentMana = 0;
         GetComponentInChildren<Animator>().SetTrigger("Death");
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Collider>().enabled = false;
@@ -136,6 +140,7 @@ public class Stats : MonoBehaviour
         }
         if (GetComponent<ProjectileThrower>())
         {
+            GetComponent<ProjectileThrower>().fire = false;
             GetComponent<ProjectileThrower>().enabled = false;
         }
     }
@@ -155,10 +160,11 @@ public class Stats : MonoBehaviour
 
     private IEnumerator HealthRegen()
     {
-        while(currentHP <= maxHP + 1)
+        while(!isDead)
         {
             yield return new WaitForSeconds(healTickRate);
-            currentHP = (int)Mathf.Clamp(currentHP + healTickAmount, 0, maxHP);
+            if(!isDead)
+                currentHP = (int)Mathf.Clamp(currentHP + healTickAmount, 0, maxHP);
             yield return null;
         }
 
@@ -167,13 +173,26 @@ public class Stats : MonoBehaviour
 
     private IEnumerator ManaRegen()
     {
-        while (currentMana <= maxMana + 1)
+        while (!isDead)
         {
             yield return new WaitForSeconds(manaTickRate);
-            currentMana = (int)Mathf.Clamp(currentMana + manaTickAmount, 0, maxMana);
+            if(!isDead)
+                currentMana = (int)Mathf.Clamp(currentMana + manaTickAmount, 0, maxMana);
             yield return null;
         }
 
         yield return null;
+    }
+
+    void OnMouseEnter()
+    {
+        if(hoverCursor)
+        Cursor.SetCursor(hoverCursor, Vector2.zero, CursorMode.Auto);
+    }
+
+    void OnMouseExit()
+    {
+        // Pass 'null' to the texture parameter to use the default system cursor.
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 }

@@ -764,6 +764,111 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &168066359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 168066360}
+  - component: {fileID: 168066363}
+  - component: {fileID: 168066362}
+  - component: {fileID: 168066361}
+  m_Layer: 0
+  m_Name: Blade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &168066360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168066359}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.5, z: 0.05}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826378789}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &168066361
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168066359}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &168066362
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168066359}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4010e321a373cb644b6e00308d0f4c08, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &168066363
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168066359}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &182996471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -17077,6 +17183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -19056,7 +19163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694593170}
   m_LocalRotation: {x: -0.005993924, y: 0.48734474, z: -0.039172385, w: 0.87231}
-  m_LocalPosition: {x: -0.08425417, y: 1.0412852, z: -0.06363236}
+  m_LocalPosition: {x: -0.08425398, y: 1.0412852, z: -0.06363233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19320,6 +19427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -19328,7 +19436,7 @@ MonoBehaviour:
   maxMana: 100
   currentHP: 0
   currentMana: 0
-  healTickAmount: 3
+  healTickAmount: 10
   healTickRate: 1
   manaTickAmount: 3
   manaTickRate: 1
@@ -19382,6 +19490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
+  applyVigilStrikes: 0
   delay: 2
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
@@ -19789,6 +19898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -20203,6 +20313,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816963276}
   m_CullTransparentMesh: 1
+--- !u!1 &1826378788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826378789}
+  m_Layer: 0
+  m_Name: ValeWep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826378789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826378788}
+  m_LocalRotation: {x: -0.1126406, y: -0.15652752, z: -0.7670161, w: -0.611962}
+  m_LocalPosition: {x: 4.8007, y: 1.1391, z: -1.9976}
+  m_LocalScale: {x: 0.55, y: 0.90833205, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 168066360}
+  - {fileID: 2002700744}
+  m_Father: {fileID: 1509550104577925898}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -5.869, y: 21.487, z: 101.716}
 --- !u!1 &1830203428
 GameObject:
   m_ObjectHideFlags: 0
@@ -20307,7 +20450,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875432748}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 7, y: 0, z: -4}
   m_LocalScale: {x: 1.1999998, y: 1.2, z: 1.1999998}
   m_ConstrainProportionsScale: 1
@@ -20333,6 +20476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: bab0464e685455444b88086d03a019d2, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -20395,8 +20539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
+  applyVigilStrikes: 0
   delay: 2
-  projectile: {fileID: 7239551046416767604, guid: 7a68a19e5c880a049b9d4f095d679dff,
+  projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
   spawnPoint: {fileID: 843979533}
   anim: {fileID: 1875432755}
@@ -21105,6 +21250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 2800000, guid: bab0464e685455444b88086d03a019d2, type: 3}
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
@@ -21378,10 +21524,12 @@ MonoBehaviour:
   eSpawnPoint: {fileID: 414387107}
   eSpeed: 10
   eLife: 1
+  protectionMat: {fileID: 0}
   rCooldown: 90
   rManaCost: 60
   rDuration: 5
   rHealPercent: 0.75
+  rFlatHeal: 0
   rTargetRange: 0
 --- !u!114 &1958931333
 MonoBehaviour:
@@ -21426,6 +21574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 0}
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
@@ -21632,6 +21781,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997610302}
   m_CullTransparentMesh: 1
+--- !u!1 &2002700743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002700744}
+  - component: {fileID: 2002700747}
+  - component: {fileID: 2002700746}
+  - component: {fileID: 2002700745}
+  m_Layer: 0
+  m_Name: Hilt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2002700744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002700743}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.9, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826378789}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2002700745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002700743}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2002700746
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002700743}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 4010e321a373cb644b6e00308d0f4c08, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2002700747
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002700743}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2007782002
 GameObject:
   m_ObjectHideFlags: 0
@@ -23188,6 +23442,7 @@ Transform:
   - {fileID: 1093645907079689036}
   - {fileID: 1527228660867966614}
   - {fileID: 630692383048792735}
+  - {fileID: 1826378789}
   m_Father: {fileID: 2889581907841239088}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -25344,11 +25599,13 @@ MonoBehaviour:
   eSpawnPoint: {fileID: 241798723}
   eSpeed: 25
   eLife: 0.15
+  protectionMat: {fileID: 2100000, guid: b9f1326ee0b0feb47b3c61ac6497b59b, type: 2}
   rCooldown: 90
   rManaCost: 60
   rDuration: 5
-  rHealPercent: 0.75
-  rTargetRange: 0
+  rHealPercent: 1
+  rFlatHeal: 400
+  rTargetRange: 6
 --- !u!114 &5279382564939403557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25412,6 +25669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb91f3669bb0c2479928720334cd787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverCursor: {fileID: 0}
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0

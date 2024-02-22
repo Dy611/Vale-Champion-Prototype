@@ -67,10 +67,12 @@ public class ValeAbilities : MonoBehaviour
     public float eLife;
 
     [Header("R Ability")]
+    public Material protectionMat;
     public float rCooldown;
     public int rManaCost;
     public float rDuration;
     public float rHealPercent;
+    public float rFlatHeal;
     public float rTargetRange;
 
     private RaycastHit hit;
@@ -130,6 +132,7 @@ public class ValeAbilities : MonoBehaviour
             agent.SetDestination(transform.position);
             GetMousePosition();
             RotateVale(hit.point);
+            SimpleMovement.stopMovement = true;
             valeAnim.SetTrigger("EAbility");
             StartCoroutine(AbilityCooldown(eCooldown, eFill, eCDText, false, 0, null));
         }
@@ -138,12 +141,12 @@ public class ValeAbilities : MonoBehaviour
     {
         GetMousePosition();
 
-        if (hit.transform.gameObject.CompareTag("Ally") && rFill.fillAmount == 0 && valeStats.currentMana >= rManaCost && CalculateDistance(hit.transform.position, transform.position) < rTargetRange)
+        if (hit.transform.gameObject.CompareTag("Ally") && hit.transform.gameObject != gameObject && rFill.fillAmount == 0 && valeStats.currentMana >= rManaCost && CalculateDistance(hit.transform.position, transform.position) < rTargetRange)
         {
             valeStats.currentMana -= rManaCost;
             agent.SetDestination(transform.position);
             RotateVale(hit.point);
-            valeAnim.SetTrigger("WAbility");
+            valeAnim.SetTrigger("RAbility");
             StartCoroutine(AbilityCooldown(rCooldown, rFill, rCDText, false, 0, null));
         }
     }
@@ -250,6 +253,13 @@ public class ValeAbilities : MonoBehaviour
     {
         StartCoroutine(EAbility());
     }
+    public void StartRAbility()
+    {
+        VigilProtected currProtection = (VigilProtected)hit.transform.gameObject.AddComponent(typeof(VigilProtected));
+        currProtection.duration = rDuration;
+        currProtection.vale = gameObject;
+        currProtection.protectedMat = protectionMat;
+    }
 
     private IEnumerator EAbility()
     {
@@ -257,6 +267,7 @@ public class ValeAbilities : MonoBehaviour
         spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
         spawnedObj.GetComponent<Ability>().lifeDuration = eLife;
+        SimpleMovement.stopMovement = false;
 
         while (spawnedObj != null)
         {

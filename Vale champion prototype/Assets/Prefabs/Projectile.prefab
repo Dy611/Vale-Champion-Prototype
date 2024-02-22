@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeDuration: 3
   speed: 10
-  damage: 25
+  damage: 10
   applyVigilStrikes: 0
   destroyOnHit: 1
   tagsToAvoid: []
