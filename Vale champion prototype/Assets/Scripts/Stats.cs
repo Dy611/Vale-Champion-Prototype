@@ -8,6 +8,10 @@ public class Stats : MonoBehaviour
 {
     public Texture2D hoverCursor;
 
+    public bool applyVigilStrikes;
+    public float attackRange;
+    public float attackDelay;
+    public int attackDamage;
     public int vigilStrikes;
     public int maxVigilStrikes;
     public float vigilStrikesDecayTimeInitial;

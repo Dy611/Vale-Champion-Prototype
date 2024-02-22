@@ -24,12 +24,8 @@ public class VigilProtected : MonoBehaviour
     #region Unity Methods
     private void Start()
     {
-        if (GetComponent<ProjectileThrower>())
-        {
-            GetComponent<ProjectileThrower>().applyVigilStrikes = true;
-        }
-
         stat = GetComponent<Stats>();
+        stat.applyVigilStrikes = true;
         rends = transform.GetComponentsInChildren<Renderer>();
         originalMats = new List<Material>();
 
@@ -84,11 +80,7 @@ public class VigilProtected : MonoBehaviour
             rends[i].material = originalMats[i];
         }
         nameText.text = originalName;
-
-        if (GetComponent<ProjectileThrower>())
-        {
-            GetComponent<ProjectileThrower>().applyVigilStrikes = false;
-        }
+        stat.applyVigilStrikes = false;
     }
     #endregion Unity Methods
 }

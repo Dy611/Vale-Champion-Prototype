@@ -5,10 +5,10 @@ public class ProjectileThrower : MonoBehaviour
 {
     #region Variables
     public bool fire = true;
-    public bool applyVigilStrikes;
 
     [SerializeField] float delay;
 
+    [SerializeField] Stats statComp;
     [SerializeField] GameObject projectile;
     [SerializeField] Transform spawnPoint;
     [SerializeField] Animator anim;
@@ -27,7 +27,7 @@ public class ProjectileThrower : MonoBehaviour
         GameObject spawnedObj = Instantiate(projectile, spawnPoint);
         spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
-        spawnedObj.GetComponent<Ability>().applyVigilStrikes = applyVigilStrikes;
+        spawnedObj.GetComponent<Ability>().applyVigilStrikes = statComp.applyVigilStrikes;
     }
     #endregion Public Methods
 

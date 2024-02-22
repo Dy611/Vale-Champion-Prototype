@@ -1198,6 +1198,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -17184,6 +17188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -19428,6 +19436,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -19490,8 +19502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
-  applyVigilStrikes: 0
   delay: 2
+  statComp: {fileID: 1720934017}
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
   spawnPoint: {fileID: 1950063051}
@@ -19899,6 +19911,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: 3537bbecd4dd5b047a47ea60a19f0598, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -20477,6 +20493,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: bab0464e685455444b88086d03a019d2, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 5
   vigilStrikesDecayTimeInitial: 3
@@ -20539,8 +20559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: 1
-  applyVigilStrikes: 0
   delay: 2
+  statComp: {fileID: 1875432750}
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
   spawnPoint: {fileID: 843979533}
@@ -21251,6 +21271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 2800000, guid: bab0464e685455444b88086d03a019d2, type: 3}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
@@ -21412,6 +21436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0189c5df41e684e8a88967d0bc62aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoAttacking: 0
+  statComp: {fileID: 0}
   cam: {fileID: 1332748994}
   agent: {fileID: 1958931326}
   valeAnim: {fileID: 1352024157}
@@ -21420,6 +21446,9 @@ MonoBehaviour:
   movementLayers:
     serializedVersion: 2
     m_Bits: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!136 &1958931328
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21575,6 +21604,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 0}
+  applyVigilStrikes: 0
+  attackRange: 0
+  attackDelay: 0
+  attackDamage: 0
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
@@ -25618,6 +25651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0189c5df41e684e8a88967d0bc62aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoAttacking: 0
+  statComp: {fileID: 5279382564939403559}
   cam: {fileID: 1332748994}
   agent: {fileID: 5279382564939403560}
   valeAnim: {fileID: 2279963444157827928}
@@ -25626,6 +25661,9 @@ MonoBehaviour:
   movementLayers:
     serializedVersion: 2
     m_Bits: 1
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &5279382564939403558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25670,6 +25708,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverCursor: {fileID: 0}
+  applyVigilStrikes: 1
+  attackRange: 2
+  attackDelay: 1.5
+  attackDamage: 10
   vigilStrikes: 0
   maxVigilStrikes: 0
   vigilStrikesDecayTimeInitial: 0
