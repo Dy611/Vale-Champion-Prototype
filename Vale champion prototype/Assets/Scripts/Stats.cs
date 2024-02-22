@@ -107,32 +107,37 @@ public class Stats : MonoBehaviour
 
         if(currentHP <= 0 && !isDead)
         {
-            isDead = true;
-            GetComponentInChildren<Animator>().SetTrigger("Death");
-            GetComponent<NavMeshAgent>().enabled = false;
-            GetComponent<Collider>().enabled = false;
+            Die();
+        }
+    }
 
-            Collider[] cols = GetComponents<Collider>();
-            
-            foreach(Collider col in cols)
-            {
-                col.enabled = false;
-            }
+    public void Die()
+    {
+        isDead = true;
+        GetComponentInChildren<Animator>().SetTrigger("Death");
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Collider>().enabled = false;
 
-            inGameUI.SetActive(false);
-            if (GetComponent<Patrol>())
-            {
-                GetComponent<Patrol>().enabled = false;
-            }
-            if (GetComponent<SimpleMovement>())
-            {
-                SimpleMovement.stopMovement = false;
-                GetComponent<SimpleMovement>().enabled = false;
-            }
-            if (GetComponent<ProjectileThrower>())
-            {
-                GetComponent<ProjectileThrower>().enabled = false;
-            }
+        Collider[] cols = GetComponents<Collider>();
+
+        foreach (Collider col in cols)
+        {
+            col.enabled = false;
+        }
+
+        inGameUI.SetActive(false);
+        if (GetComponent<Patrol>())
+        {
+            GetComponent<Patrol>().enabled = false;
+        }
+        if (GetComponent<SimpleMovement>())
+        {
+            SimpleMovement.stopMovement = false;
+            GetComponent<SimpleMovement>().enabled = false;
+        }
+        if (GetComponent<ProjectileThrower>())
+        {
+            GetComponent<ProjectileThrower>().enabled = false;
         }
     }
 
