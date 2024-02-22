@@ -5,20 +5,26 @@ using TMPro;
 
 public class Spellshield : MonoBehaviour
 {
-    public Material invisMat;
-    public Material spellshieldMat;
-
+    #region Variables
     public float duration;
     public float invisDuration;
     public bool invis;
+
     public List<string> tagsToAvoid;
 
+    public Material invisMat;
+    public Material spellshieldMat;
+
     private float timeElapsed;
-    public Renderer[] rends;
-    private List<Material> originalMats;
-    private TMP_Text nameText;
     private string originalName;
 
+    private List<Material> originalMats;
+
+    private Renderer[] rends;
+    private TMP_Text nameText;
+    #endregion Variables
+
+    #region Unity Methods
     private void Start()
     {
         rends = transform.GetComponentsInChildren<Renderer>();
@@ -35,15 +41,6 @@ public class Spellshield : MonoBehaviour
         nameText.text = "SpellShield!";
     }
 
-    private void OnDestroy()
-    {
-        for (int i = 0; i < rends.Length; i++)
-        {
-            rends[i].material = originalMats[i];
-        }
-        nameText.text = originalName;
-    }
-
     void Update()
     {
         timeElapsed += Time.deltaTime;
@@ -51,6 +48,15 @@ public class Spellshield : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < rends.Length; i++)
+        {
+            rends[i].material = originalMats[i];
+        }
+        nameText.text = originalName;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +80,9 @@ public class Spellshield : MonoBehaviour
             }
         }
     }
+    #endregion Unity Methods
 
+    #region Coroutines
     private IEnumerator InvisTime(float length)
     {
         yield return new WaitForSeconds(length);
@@ -88,4 +96,5 @@ public class Spellshield : MonoBehaviour
         Destroy(this);
         yield return null;
     }
+    #endregion Coroutines
 }

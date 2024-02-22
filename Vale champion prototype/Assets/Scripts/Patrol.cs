@@ -1,54 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
-    public Vector3 startPos;
-    public Vector3 endPos;
-    public float delay;
-    public NavMeshAgent agent;
-    public Animator anim;
+    #region Variables
+    [SerializeField] float delay;
 
-    public float timeElapsed;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
 
-    // Update is called once per frame
+    [SerializeField] Vector3 startPos;
+    [SerializeField] Vector3 endPos;
+
+    private float timeElapsed;
+    #endregion Variables
+
+    #region Unity Methods
     void Update()
     {
         if(timeElapsed > 0.2f)
             anim.SetBool("Walking", false);
 
-
         if(CalculateDistance(startPos, transform.position) <= 0.1f || CalculateDistance(endPos, transform.position) <= 0.1f)
-        {
             timeElapsed += Time.deltaTime;
-        }
 
         if(CalculateDistance(startPos, transform.position) <= 0.1f)
         {
             if(timeElapsed >= delay)
-            {
-                RotateCharacter(endPos);
-            }
+                PatrolTo(endPos);
         }
         else if (CalculateDistance(endPos, transform.position) <= 0.1f)
         {
             if (timeElapsed >= delay)
-            {
-                RotateCharacter(startPos);
-            }
+                PatrolTo(startPos);
         }
     }
+    #endregion Unity Methods
 
-    private void RotateCharacter(Vector3 destination)
+    #region Private Methods
+    private void PatrolTo(Vector3 destination)
     {
-        //Rotate Character
+        //Calculate direction by destination - source
         Vector3 lookDir = destination - transform.position;
+
+        //Remove y to avoid elevation related problems
         lookDir.y = 0;
+
+        //Set rotation
         transform.rotation = Quaternion.LookRotation(lookDir);
+
+        //Reset timer for patrol
         timeElapsed = 0;
+
+        //Move agent to new destination
         agent.SetDestination(destination);
+
+        //Update animator
         anim.SetBool("Walking", true);
     }
 
@@ -59,4 +66,5 @@ public class Patrol : MonoBehaviour
 
         return Mathf.Sqrt((xDiff * xDiff) + (zDiff * zDiff));
     }
+    #endregion Private Methods
 }

@@ -7,14 +7,10 @@ using System.Collections.Generic;
 public class CollisionSensor : MonoBehaviour
 {
     #region Variables
-    /// <summary>
-    /// The Layers This Sensor Detects
-    /// </summary>
+    [Tooltip("The Layers This Sensor Detects")]
     [SerializeField] LayerMask layers;
 
-    /// <summary>
-    /// The Tags This Sensor Uses
-    /// </summary>
+    [Tooltip("The Tags This Sensor Uses")]
     [SerializeField] string[] tags;
 
     [SerializeField] Color standardColor;

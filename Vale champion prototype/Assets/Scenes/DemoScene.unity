@@ -19381,12 +19381,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff2f9f79269add49ba18caeef414f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fire: 1
+  delay: 2
   projectile: {fileID: 7178598383467903019, guid: 8a4d0d4b7487c9a40ad5ae177b8ec24e,
     type: 3}
   spawnPoint: {fileID: 1950063051}
-  speed: 10
-  delay: 2
-  delayOffset: 1
   anim: {fileID: 5866666021373321872}
 --- !u!195 &1720934020
 NavMeshAgent:
@@ -20395,12 +20394,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff2f9f79269add49ba18caeef414f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fire: 1
+  delay: 2
   projectile: {fileID: 7239551046416767604, guid: 7a68a19e5c880a049b9d4f095d679dff,
     type: 3}
   spawnPoint: {fileID: 843979533}
-  speed: 10
-  delay: 2
-  delayOffset: 1
   anim: {fileID: 1875432755}
 --- !u!195 &1875432753
 NavMeshAgent:
@@ -21090,12 +21088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fe6cf72cebc904b907b31301a407b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 4, y: 1, z: -4}
-  endPos: {x: -3, y: 1, z: -4}
   delay: 3
   agent: {fileID: 1925325503}
   anim: {fileID: 2049920140}
-  timeElapsed: 0
+  startPos: {x: 4, y: 1, z: -4}
+  endPos: {x: -3, y: 1, z: -4}
 --- !u!114 &1925325508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21204,7 +21201,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950063050}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.3, z: 1}
   m_LocalScale: {x: 0.8333335, y: 0.83333325, z: 0.8333335}
   m_ConstrainProportionsScale: 0

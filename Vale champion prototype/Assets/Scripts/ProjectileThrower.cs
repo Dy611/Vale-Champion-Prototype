@@ -1,40 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileThrower : MonoBehaviour
 {
-    public GameObject projectile;
-    public Transform spawnPoint;
-    public float speed;
-    public float delay;
-    public float delayOffset;
-    public Animator anim;
+    #region Variables
+    [SerializeField] bool fire = true;
+    [SerializeField] float delay;
 
-    private GameObject spawnedObj;
-    private float timeElapsed;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform spawnPoint;
+    [SerializeField] Animator anim;
+    #endregion Variables
 
-    private void Update()
+    #region Unity Methods
+    private void Start()
     {
-        timeElapsed += Time.deltaTime;
-
-        if(timeElapsed >= delay + delayOffset)
-        {
-            Destroy(spawnedObj);
-            timeElapsed = 0;
-            anim.SetTrigger("Cast");
-        }
-
-        if(spawnedObj != null)
-        {
-            spawnedObj.transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
-        }
+        StartCoroutine(Fire(delay));
     }
+    #endregion Unity Methods
 
+    #region Public Methods
     public void SpawnObj()
     {
-        spawnedObj = Instantiate(projectile, spawnPoint);
+        GameObject spawnedObj = Instantiate(projectile, spawnPoint);
         spawnedObj.tag = gameObject.tag;
         spawnedObj.transform.SetParent(null);
     }
+    #endregion Public Methods
+
+    #region Coroutines
+    private IEnumerator Fire(float delay)
+    {
+        while (fire)
+        {
+            yield return new WaitForSeconds(delay);
+            anim.SetTrigger("Cast");
+        }
+    }
+    #endregion Coroutines
 }
